@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/secondhand-product-1.0.0.json",
+  "title": "Secondhand product collection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "query", "sort", "collectedAt", "count",
+    "failedCount", "products", "errors"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "query": {"type": "string"},
+    "sort": {"type": "string"},
+    "collectedAt": {"type": "string"},
+    "count": {"type": "integer", "minimum": 0},
+    "failedCount": {"type": "integer", "minimum": 0},
+    "products": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/product"}
+    },
+    "errors": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "nullableString": {"type": ["string", "null"]},
+    "nullableNumber": {"type": ["number", "null"]},
+    "nullableInteger": {"type": ["integer", "null"]},
+    "nullableBoolean": {"type": ["boolean", "null"]},
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "regionCode"],
+      "properties": {
+        "name": {"$ref": "#/$defs/nullableString"},
+        "regionCode": {"$ref": "#/$defs/nullableString"}
+      }
+    },
+    "shippingMethod": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "fee", "feePayer", "remoteAreaExtraFee"],
+      "properties": {
+        "type": {"$ref": "#/$defs/nullableString"},
+        "fee": {"$ref": "#/$defs/nullableInteger"},
+        "feePayer": {"$ref": "#/$defs/nullableString"},
+        "remoteAreaExtraFee": {"$ref": "#/$defs/nullableInteger"}
+      }
+    },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "platform", "platformProductId", "url", "title", "productName",
+        "description", "price", "originalPrice", "quantity", "saleStatus",
+        "condition", "conditionLabel", "brand", "catalogProductId",
+        "category", "categories", "attributes", "package", "trade",
+        "metrics", "images", "seller", "createdAt", "updatedAt", "source"
+      ],
+      "properties": {
+        "platform": {"$ref": "#/$defs/nullableString"},
+        "platformProductId": {"$ref": "#/$defs/nullableString"},
+        "url": {"$ref": "#/$defs/nullableString"},
+        "title": {"$ref": "#/$defs/nullableString"},
+        "productName": {"$ref": "#/$defs/nullableString"},
+        "description": {"$ref": "#/$defs/nullableString"},
+        "price": {"$ref": "#/$defs/nullableInteger"},
+        "originalPrice": {"$ref": "#/$defs/nullableInteger"},
+        "quantity": {"$ref": "#/$defs/nullableInteger"},
+        "saleStatus": {"$ref": "#/$defs/nullableString"},
+        "condition": {"$ref": "#/$defs/nullableString"},
+        "conditionLabel": {"$ref": "#/$defs/nullableString"},
+        "brand": {"$ref": "#/$defs/nullableString"},
+        "catalogProductId": {"$ref": "#/$defs/nullableString"},
+        "category": {"$ref": "#/$defs/nullableString"},
+        "categories": {
+          "type": ["array", "null"],
+          "items": {"type": "string"}
+        },
+        "attributes": {
+          "type": ["array", "null"],
+          "items": {"type": "object"}
+        },
+        "package": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hasOriginalBox", "hasWarranty"],
+          "properties": {
+            "hasOriginalBox": {"$ref": "#/$defs/nullableBoolean"},
+            "hasWarranty": {"$ref": "#/$defs/nullableBoolean"}
+          }
+        },
+        "trade": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "paymentType", "safetyPaymentAvailable",
+            "transactionOfferAvailable", "buyerProtectionFeeRate",
+            "shipping", "inPerson"
+          ],
+          "properties": {
+            "paymentType": {"$ref": "#/$defs/nullableString"},
+            "safetyPaymentAvailable": {"$ref": "#/$defs/nullableBoolean"},
+            "transactionOfferAvailable": {"$ref": "#/$defs/nullableBoolean"},
+            "buyerProtectionFeeRate": {"$ref": "#/$defs/nullableNumber"},
+            "shipping": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "available", "fee", "feePayer", "remoteAreaExtraFee",
+                "freeShipping", "methods"
+              ],
+              "properties": {
+                "available": {"$ref": "#/$defs/nullableBoolean"},
+                "fee": {"$ref": "#/$defs/nullableInteger"},
+                "feePayer": {"$ref": "#/$defs/nullableString"},
+                "remoteAreaExtraFee": {"$ref": "#/$defs/nullableInteger"},
+                "freeShipping": {"$ref": "#/$defs/nullableBoolean"},
+                "methods": {
+                  "type": ["array", "null"],
+                  "items": {"$ref": "#/$defs/shippingMethod"}
+                }
+              }
+            },
+            "inPerson": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["available", "locations"],
+              "properties": {
+                "available": {"$ref": "#/$defs/nullableBoolean"},
+                "locations": {
+                  "type": ["array", "null"],
+                  "items": {"$ref": "#/$defs/location"}
+                }
+              }
+            }
+          }
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["favoriteCount", "viewCount", "chatCount"],
+          "properties": {
+            "favoriteCount": {"$ref": "#/$defs/nullableInteger"},
+            "viewCount": {"$ref": "#/$defs/nullableInteger"},
+            "chatCount": {"$ref": "#/$defs/nullableInteger"}
+          }
+        },
+        "images": {
+          "type": ["array", "null"],
+          "items": {"type": "string"}
+        },
+        "seller": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name", "profileId", "reviewRating", "reviewCount",
+            "salesCount", "isProshop", "verified"
+          ],
+          "properties": {
+            "name": {"$ref": "#/$defs/nullableString"},
+            "profileId": {"$ref": "#/$defs/nullableString"},
+            "reviewRating": {"$ref": "#/$defs/nullableNumber"},
+            "reviewCount": {"$ref": "#/$defs/nullableInteger"},
+            "salesCount": {"$ref": "#/$defs/nullableInteger"},
+            "isProshop": {"$ref": "#/$defs/nullableBoolean"},
+            "verified": {"$ref": "#/$defs/nullableBoolean"}
+          }
+        },
+        "createdAt": {"$ref": "#/$defs/nullableString"},
+        "updatedAt": {"$ref": "#/$defs/nullableString"},
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "isSearchAd", "purchaseVerified", "isCrossPosted",
+            "originalMarketName", "originalMarketProductUrl"
+          ],
+          "properties": {
+            "isSearchAd": {"$ref": "#/$defs/nullableBoolean"},
+            "purchaseVerified": {"$ref": "#/$defs/nullableBoolean"},
+            "isCrossPosted": {"$ref": "#/$defs/nullableBoolean"},
+            "originalMarketName": {"$ref": "#/$defs/nullableString"},
+            "originalMarketProductUrl": {"$ref": "#/$defs/nullableString"}
+          }
+        }
+      }
+    }
+  }
+}

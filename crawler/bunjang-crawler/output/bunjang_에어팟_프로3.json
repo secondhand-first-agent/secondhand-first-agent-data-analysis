@@ -1,0 +1,227 @@
+{
+  "query": "에어팟 프로3",
+  "sort": "latest",
+  "requestedCount": 5,
+  "collectedAt": "2026-08-19T06:43:20.214510+00:00",
+  "count": 5,
+  "failedCount": 0,
+  "products": [
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424509610",
+      "url": "https://m.bunjang.co.kr/products/424509610",
+      "title": "애플 에어팟 프로3 판매 미개봉 신품",
+      "description": "애플 에어팟 프로3 미개봉 신품 판매합니다. 사진에 보이는 그대로 깨끗한 상태입니다. 좋은 가격에 가져가세요. 구매 원하시면 바로 안전결제 해주시면 됩니다!",
+      "price": 256000,
+      "originalPrice": 256000,
+      "currency": "KRW",
+      "quantity": 1,
+      "saleStatus": "SELLING",
+      "condition": "NEW",
+      "conditionLabel": "새 상품 (미사용)",
+      "brand": "애플",
+      "category": "MP3/PMP",
+      "categories": [
+        "디지털",
+        "오디오/영상/관련기기",
+        "MP3/PMP"
+      ],
+      "location": null,
+      "freeShipping": true,
+      "inPersonTrade": false,
+      "favoriteCount": 4,
+      "viewCount": 142,
+      "chatCount": 6,
+      "commentCount": 0,
+      "images": [
+        "https://media.bunjang.co.kr/product/424509610_1_1786889566_w1200.jpg"
+      ],
+      "seller": {
+        "name": "박혜미777",
+        "reviewRating": 0.0,
+        "reviewCount": 0,
+        "salesCount": 1,
+        "isProshop": false
+      },
+      "createdAt": "2026-08-16T14:12:47Z",
+      "updatedAt": "2026-08-19T06:41:40.180817Z",
+      "isSearchAd": false
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424288893",
+      "url": "https://m.bunjang.co.kr/products/424288893",
+      "title": "[찍힘X]에어팟프로3 프로3세대 본체",
+      "description": "에어팟 프로3세대 본체 판매합니다\n\n&제품 정보\n• 모델: 에어팟 프로3세대 본체\n• 상태: 사진과 동일 (노캔.충전.통화 등 기능 정상)\n\n&검수 및 발송\n• 모든 기능 직접 확인 후 발송\n• 알코올 소독 및 안전포장\n• 페어링 후 바로 사용 가능\n\n&거래 안내\n• 당일~익일 발송\n• 안전결제로만 진행\n• 구매 후 페어링 문의 및 사용 중 궁금한 점 환영\n\n후기 믿어주시고 후회하지 않게 해드리겠습니다.\n별도 문의 없을 시 안전결제 바로 해주세요!\n+ 비싼 데는 이유가 있는 겁니다.",
+      "price": 90000,
+      "originalPrice": 90000,
+      "currency": "KRW",
+      "quantity": 1,
+      "saleStatus": "SELLING",
+      "condition": "LIGHTLY_USED",
+      "conditionLabel": "사용감 적음",
+      "brand": "애플",
+      "category": "이어폰",
+      "categories": [
+        "디지털",
+        "오디오/영상/관련기기",
+        "이어폰"
+      ],
+      "location": null,
+      "freeShipping": false,
+      "inPersonTrade": false,
+      "favoriteCount": 2,
+      "viewCount": 46,
+      "chatCount": 4,
+      "commentCount": 0,
+      "images": [
+        "https://media.bunjang.co.kr/product/424288893_1_1787073634_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424288893_2_1787073634_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424288893_3_1787073634_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424288893_4_1787073634_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424288893_5_1787073634_w1200.jpg"
+      ],
+      "seller": {
+        "name": "에이치팟",
+        "reviewRating": 5.0,
+        "reviewCount": 30,
+        "salesCount": 26,
+        "isProshop": true
+      },
+      "createdAt": "2026-08-14T14:02:11Z",
+      "updatedAt": "2026-08-19T06:31:52.596832Z",
+      "isSearchAd": false
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "412139302",
+      "url": "https://m.bunjang.co.kr/products/412139302",
+      "title": "에어팟 프로 3 미사용/세제품",
+      "description": "애플 코리아 정품\n에어팟 프로 3 \n완전 미사용 제품\n단품",
+      "price": 250000,
+      "originalPrice": 250000,
+      "currency": "KRW",
+      "quantity": 11,
+      "saleStatus": "SELLING",
+      "condition": "NEW",
+      "conditionLabel": "새 상품 (미사용)",
+      "brand": "애플",
+      "category": "이어폰",
+      "categories": [
+        "디지털",
+        "오디오/영상/관련기기",
+        "이어폰"
+      ],
+      "location": "동구 안심3.4동",
+      "freeShipping": false,
+      "inPersonTrade": true,
+      "favoriteCount": 257,
+      "viewCount": 5077,
+      "chatCount": 76,
+      "commentCount": 0,
+      "images": [
+        "https://media.bunjang.co.kr/product/412139302_1_1786066370_w1200.jpg",
+        "https://media.bunjang.co.kr/product/412139302_2_1786066370_w1200.jpg",
+        "https://media.bunjang.co.kr/product/412139302_3_1786066370_w1200.jpg",
+        "https://media.bunjang.co.kr/product/412139302_4_1786066370_w1200.jpg",
+        "https://media.bunjang.co.kr/product/412139302_5_1786066370_w1200.jpg"
+      ],
+      "seller": {
+        "name": "후기100",
+        "reviewRating": 4.9,
+        "reviewCount": 65,
+        "salesCount": 70,
+        "isProshop": true
+      },
+      "createdAt": "2026-06-03T12:25:40Z",
+      "updatedAt": "2026-08-19T06:20:00Z",
+      "isSearchAd": false
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424485193",
+      "url": "https://m.bunjang.co.kr/products/424485193",
+      "title": "애플 에어팟 프로 3 (미개봉) 능동형 노이즈 캔슬링 블루투스 이어폰",
+      "description": "애플 에어팟 프로 3세대 미개봉 새 상품 판매합니다.\n사진에 보이는 것처럼 박스 상태 그대로 보관 중이며, 구성품 모두 포함되어 있습니다.\n최신 모델로 음질 및 노이즈 캔슬링 성능이 뛰어납니다.\n추가 문의 없으시면 바로 안전결제 해주시면 됩니다!",
+      "price": 254000,
+      "originalPrice": 254000,
+      "currency": "KRW",
+      "quantity": 1,
+      "saleStatus": "SELLING",
+      "condition": "NEW",
+      "conditionLabel": "새 상품 (미사용)",
+      "brand": "애플",
+      "category": "이어폰",
+      "categories": [
+        "디지털",
+        "오디오/영상/관련기기",
+        "이어폰"
+      ],
+      "location": null,
+      "freeShipping": true,
+      "inPersonTrade": false,
+      "favoriteCount": 3,
+      "viewCount": 110,
+      "chatCount": 1,
+      "commentCount": 0,
+      "images": [
+        "https://media.bunjang.co.kr/product/424485193_1_1786878323_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424485193_2_1786878323_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424485193_3_1786878323_w1200.jpg"
+      ],
+      "seller": {
+        "name": "상점86735123호",
+        "reviewRating": 0.0,
+        "reviewCount": 0,
+        "salesCount": 0,
+        "isProshop": false
+      },
+      "createdAt": "2026-08-16T11:05:24Z",
+      "updatedAt": "2026-08-19T06:17:16.804247Z",
+      "isSearchAd": false
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424676370",
+      "url": "https://m.bunjang.co.kr/products/424676370",
+      "title": "APPLE AirPods Pro 3 (미개봉)",
+      "description": "미개봉 새 상품 애플 에어팟 프로 3세대 판매합니다.\n박스에 그려진 에어팟 프로 디자인처럼 깔끔한 화이트 색상입니다.\n선물용이나 개인 소장용으로도 좋습니다.\n구매 원하시면 바로 안전결제 해주시면 됩니다!",
+      "price": 261000,
+      "originalPrice": 261000,
+      "currency": "KRW",
+      "quantity": 1,
+      "saleStatus": "SELLING",
+      "condition": "NEW",
+      "conditionLabel": "새 상품 (미사용)",
+      "brand": "애플",
+      "category": "이어폰",
+      "categories": [
+        "디지털",
+        "오디오/영상/관련기기",
+        "이어폰"
+      ],
+      "location": null,
+      "freeShipping": true,
+      "inPersonTrade": false,
+      "favoriteCount": 1,
+      "viewCount": 44,
+      "chatCount": 0,
+      "commentCount": 0,
+      "images": [
+        "https://media.bunjang.co.kr/product/424676370_1_1787026301_w1200.jpg",
+        "https://media.bunjang.co.kr/product/424676370_2_1787026301_w1200.jpg"
+      ],
+      "seller": {
+        "name": "상점79443164호",
+        "reviewRating": 0.0,
+        "reviewCount": 0,
+        "salesCount": 0,
+        "isProshop": false
+      },
+      "createdAt": "2026-08-18T04:11:41Z",
+      "updatedAt": "2026-08-19T06:17:13.861421Z",
+      "isSearchAd": false
+    }
+  ],
+  "errors": []
+}

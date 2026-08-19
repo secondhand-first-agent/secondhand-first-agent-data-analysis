@@ -1,0 +1,502 @@
+{
+  "query": "에어팟 프로3",
+  "sort": "latest",
+  "requestedCount": 5,
+  "collectedAt": "2026-08-19T07:23:33.765621+00:00",
+  "count": 5,
+  "failedCount": 0,
+  "products": [
+    {
+      "platform": "JOONGNA",
+      "platformProductId": "231676347",
+      "url": "https://web.joongna.com/product/231676347",
+      "common": {
+        "title": "에어팟 프로3 풀박스",
+        "description": "에어팟 프로3 풀박스 집에서만 착용만 해봤고  새제품 입니다",
+        "price": 160000,
+        "currency": "KRW",
+        "images": [
+          "https://img2.joongna.com/media/original/2026/08/19/1787124129062hd1_0FWSa.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/19/1787124129146ibt_RbC8m.jpg?impolicy=resize&format=webp"
+        ]
+      },
+      "joongna": {
+        "search": {
+          "seq": 231676347,
+          "productPositionNo": 1,
+          "platformType": 1,
+          "price": 160000,
+          "parcelFee": 1,
+          "url": "https://img2.joongna.com/media/original/2026/08/19/1787124129062hd1_0FWSa.jpg?impolicy=thumb&size=150",
+          "title": "에어팟 프로3 풀박스",
+          "state": 0,
+          "sortDate": "2026-08-19 16:22:09",
+          "mainLocationName": "",
+          "articleSeq": 0,
+          "articleUrl": null,
+          "videoProductYn": "N",
+          "wishCount": 0,
+          "jnPayBadgeFlag": true,
+          "pickupBadgeFlag": false,
+          "highlightedTitle": "",
+          "chatCount": 0,
+          "selfAuditFlag": false,
+          "userType": 0,
+          "certifySellerFlag": false,
+          "locationNames": [],
+          "objectType": "product",
+          "wishYn": 0
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "@type": "Product",
+            "name": "에어팟 프로3 풀박스",
+            "image": [
+              "https://img2.joongna.com/media/original/2026/08/19/1787124129062hd1_0FWSa.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/19/1787124129146ibt_RbC8m.jpg?impolicy=resize&format=webp"
+            ],
+            "description": "에어팟 프로3 풀박스 집에서만 착용만 해봤고  새제품 입니다",
+            "sku": "231676347",
+            "offers": {
+              "price": 160000,
+              "priceCurrency": "KRW",
+              "itemCondition": "https://schema.org/UsedCondition",
+              "availability": "https://schema.org/InStock",
+              "url": "https://web.joongna.com/product/231676347",
+              "seller": {
+                "@type": "Person",
+                "name": "잔잔한진실밀"
+              }
+            }
+          },
+          "jsonLdBreadcrumb": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "홈",
+              "item": "https://web.joongna.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "가전제품",
+              "item": "https://web.joongna.com/search?category=7"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "음향가전",
+              "item": "https://web.joongna.com/search?category=153"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "이어폰/헤드폰",
+              "item": "https://web.joongna.com/search?category=1171"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "에어팟 프로3 풀박스"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "platform": "JOONGNA",
+      "platformProductId": "230574800",
+      "url": "https://web.joongna.com/product/230574800",
+      "common": {
+        "title": "미개봉정품 애플 에어팟프로3 미개봉 에어팟프로3세대 에어팟 프로3세대",
+        "description": "애플정품 미개봉 에어팟프로3세대 USB-C  (모델명: MFHP4KH/A)  에눌불가",
+        "price": 285000,
+        "currency": "KRW",
+        "images": [
+          "https://img2.joongna.com/media/original/2026/07/13/1783911880766Aya_DyKqv.jpg?impolicy=resize&format=webp"
+        ]
+      },
+      "joongna": {
+        "search": {
+          "seq": 230574800,
+          "productPositionNo": 2,
+          "platformType": 1,
+          "price": 285000,
+          "parcelFee": 0,
+          "url": "https://img2.joongna.com/media/original/2026/07/13/1783911880766Aya_DyKqv.jpg?impolicy=thumb&size=150",
+          "title": "미개봉정품 애플 에어팟프로3 미개봉 에어팟프로3세대 에어팟 프로3세대",
+          "state": 0,
+          "sortDate": "2026-08-19 16:17:39",
+          "mainLocationName": "",
+          "articleSeq": 0,
+          "articleUrl": null,
+          "videoProductYn": "N",
+          "wishCount": 2,
+          "jnPayBadgeFlag": true,
+          "pickupBadgeFlag": false,
+          "highlightedTitle": "",
+          "chatCount": 2,
+          "selfAuditFlag": false,
+          "userType": 0,
+          "certifySellerFlag": false,
+          "locationNames": [],
+          "objectType": "product",
+          "wishYn": 0
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "@type": "Product",
+            "name": "미개봉정품 애플 에어팟프로3 미개봉 에어팟프로3세대 에어팟 프로3세대",
+            "image": [
+              "https://img2.joongna.com/media/original/2026/07/13/1783911880766Aya_DyKqv.jpg?impolicy=resize&format=webp"
+            ],
+            "description": "애플정품 미개봉 에어팟프로3세대 USB-C  (모델명: MFHP4KH/A)  에눌불가",
+            "sku": "230574800",
+            "offers": {
+              "price": 285000,
+              "priceCurrency": "KRW",
+              "itemCondition": "https://schema.org/UsedCondition",
+              "availability": "https://schema.org/InStock",
+              "url": "https://web.joongna.com/product/230574800",
+              "seller": {
+                "@type": "Person",
+                "name": "작은미니집"
+              }
+            }
+          },
+          "jsonLdBreadcrumb": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "홈",
+              "item": "https://web.joongna.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "가전제품",
+              "item": "https://web.joongna.com/search?category=7"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "음향가전",
+              "item": "https://web.joongna.com/search?category=153"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "이어폰/헤드폰",
+              "item": "https://web.joongna.com/search?category=1171"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "미개봉정품 애플 에어팟프로3 미개봉 에어팟프로3세대 에어팟 프로3세대"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "platform": "JOONGNA",
+      "platformProductId": "231620758",
+      "url": "https://web.joongna.com/product/231620758",
+      "common": {
+        "title": "애플 에어팟 프로3 미개봉",
+        "description": "미개봉 급처 가격으로 판매 하여 즉입 하실분만 채팅 주세요 제조년월 2026.6 지인 한테 선물 받았고 쿠팡에서 구매 했다네요 편의점 gs 일반 택배 혹은 반값 택배로 보내 드립니다",
+        "price": 220000,
+        "currency": "KRW",
+        "images": [
+          "https://img2.joongna.com/media/original/2026/08/17/1786956462232w90_J6EFg.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/17/1786956462304QpQ_8dZQj.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/17/1786956462368DUC_kYrKF.jpg?impolicy=resize&format=webp"
+        ]
+      },
+      "joongna": {
+        "search": {
+          "seq": 231620758,
+          "productPositionNo": 3,
+          "platformType": 1,
+          "price": 220000,
+          "parcelFee": 0,
+          "url": "https://img2.joongna.com/media/original/2026/08/17/1786956462232w90_J6EFg.jpg?impolicy=thumb&size=150",
+          "title": "애플 에어팟 프로3 미개봉",
+          "state": 0,
+          "sortDate": "2026-08-19 16:14:33",
+          "mainLocationName": "",
+          "articleSeq": 0,
+          "articleUrl": null,
+          "videoProductYn": "N",
+          "wishCount": 5,
+          "jnPayBadgeFlag": true,
+          "pickupBadgeFlag": false,
+          "highlightedTitle": "",
+          "chatCount": 5,
+          "selfAuditFlag": false,
+          "userType": 0,
+          "certifySellerFlag": false,
+          "locationNames": [],
+          "objectType": "product",
+          "wishYn": 0
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "@type": "Product",
+            "name": "애플 에어팟 프로3 미개봉",
+            "image": [
+              "https://img2.joongna.com/media/original/2026/08/17/1786956462232w90_J6EFg.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/17/1786956462304QpQ_8dZQj.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/17/1786956462368DUC_kYrKF.jpg?impolicy=resize&format=webp"
+            ],
+            "description": "미개봉 급처 가격으로 판매 하여 즉입 하실분만 채팅 주세요 제조년월 2026.6 지인 한테 선물 받았고 쿠팡에서 구매 했다네요 편의점 gs 일반 택배 혹은 반값 택배로 보내 드립니다",
+            "sku": "231620758",
+            "offers": {
+              "price": 220000,
+              "priceCurrency": "KRW",
+              "itemCondition": "https://schema.org/UsedCondition",
+              "availability": "https://schema.org/InStock",
+              "url": "https://web.joongna.com/product/231620758",
+              "seller": {
+                "@type": "Person",
+                "name": "중고나라#10036729"
+              }
+            }
+          },
+          "jsonLdBreadcrumb": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "홈",
+              "item": "https://web.joongna.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "가전제품",
+              "item": "https://web.joongna.com/search?category=7"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "음향가전",
+              "item": "https://web.joongna.com/search?category=153"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "이어폰/헤드폰",
+              "item": "https://web.joongna.com/search?category=1171"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "애플 에어팟 프로3 미개봉"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "platform": "JOONGNA",
+      "platformProductId": "231675882",
+      "url": "https://web.joongna.com/product/231675882",
+      "common": {
+        "title": "애플 에어팟 프로 3세대 미개봉새제품입니다!",
+        "description": "미개봉새제품입니다 모델명:MFHP4KH/A (노캔)  택배거래,직거래합니다 (배송비내드려요)  주소:경기도광주시 신현동 모닝2차근처",
+        "price": 280000,
+        "currency": "KRW",
+        "images": [
+          "https://img2.joongna.com/media/original/2026/08/19/1787123177565NL8_5rdZt.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/19/1787123177696lZh_lf8xD.jpg?impolicy=resize&format=webp"
+        ]
+      },
+      "joongna": {
+        "search": {
+          "seq": 231675882,
+          "productPositionNo": 5,
+          "platformType": 1,
+          "price": 280000,
+          "parcelFee": 1,
+          "url": "https://img2.joongna.com/media/original/2026/08/19/1787123177565NL8_5rdZt.jpg?impolicy=thumb&size=150",
+          "title": "애플 에어팟 프로 3세대 미개봉새제품입니다!",
+          "state": 0,
+          "sortDate": "2026-08-19 16:06:17",
+          "mainLocationName": "신현동",
+          "articleSeq": 0,
+          "articleUrl": null,
+          "videoProductYn": "N",
+          "wishCount": 0,
+          "jnPayBadgeFlag": true,
+          "pickupBadgeFlag": false,
+          "highlightedTitle": "",
+          "chatCount": 1,
+          "selfAuditFlag": false,
+          "userType": 0,
+          "certifySellerFlag": false,
+          "locationNames": [
+            "경기도 광주시 신현동"
+          ],
+          "objectType": "product",
+          "wishYn": 0
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "@type": "Product",
+            "name": "애플 에어팟 프로 3세대 미개봉새제품입니다!",
+            "image": [
+              "https://img2.joongna.com/media/original/2026/08/19/1787123177565NL8_5rdZt.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/19/1787123177696lZh_lf8xD.jpg?impolicy=resize&format=webp"
+            ],
+            "description": "미개봉새제품입니다 모델명:MFHP4KH/A (노캔)  택배거래,직거래합니다 (배송비내드려요)  주소:경기도광주시 신현동 모닝2차근처",
+            "sku": "231675882",
+            "offers": {
+              "price": 280000,
+              "priceCurrency": "KRW",
+              "itemCondition": "https://schema.org/UsedCondition",
+              "availability": "https://schema.org/InStock",
+              "url": "https://web.joongna.com/product/231675882",
+              "seller": {
+                "@type": "Person",
+                "name": "릴루아아아"
+              }
+            }
+          },
+          "jsonLdBreadcrumb": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "홈",
+              "item": "https://web.joongna.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "가전제품",
+              "item": "https://web.joongna.com/search?category=7"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "음향가전",
+              "item": "https://web.joongna.com/search?category=153"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "이어폰/헤드폰",
+              "item": "https://web.joongna.com/search?category=1171"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "애플 에어팟 프로 3세대 미개봉새제품입니다!"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "platform": "JOONGNA",
+      "platformProductId": "231675855",
+      "url": "https://web.joongna.com/product/231675855",
+      "common": {
+        "title": "에어팟 프로 3세대 / 미개봉",
+        "description": "* 에어팟 프로 3세대    - 제품 상태 : 미개봉  - 제조일 : 2026년 6월    - 직거래 , 택배거래 다 합니다.  - 안심결제 해주시면 잘 포장해서 보내 드리겠습니다.   @ 네고 문의 차단",
+        "price": 280000,
+        "currency": "KRW",
+        "images": [
+          "https://img2.joongna.com/media/original/2026/08/19/1787123101047e0G_eumLM.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/19/1787123101150LA1_MY08M.jpg?impolicy=resize&format=webp",
+          "https://img2.joongna.com/media/original/2026/08/19/1787123101230k4F_jCQWv.jpg?impolicy=resize&format=webp"
+        ]
+      },
+      "joongna": {
+        "search": {
+          "seq": 231675855,
+          "productPositionNo": 6,
+          "platformType": 1,
+          "price": 280000,
+          "parcelFee": 0,
+          "url": "https://img2.joongna.com/media/original/2026/08/19/1787123101047e0G_eumLM.jpg?impolicy=thumb&size=150",
+          "title": "에어팟 프로 3세대 / 미개봉",
+          "state": 0,
+          "sortDate": "2026-08-19 16:05:01",
+          "mainLocationName": "원평동",
+          "articleSeq": 0,
+          "articleUrl": null,
+          "videoProductYn": "N",
+          "wishCount": 0,
+          "jnPayBadgeFlag": true,
+          "pickupBadgeFlag": false,
+          "highlightedTitle": "",
+          "chatCount": 0,
+          "selfAuditFlag": false,
+          "userType": 0,
+          "certifySellerFlag": false,
+          "locationNames": [
+            "경기도 평택시 원평동"
+          ],
+          "objectType": "product",
+          "wishYn": 0
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "@type": "Product",
+            "name": "에어팟 프로 3세대 / 미개봉",
+            "image": [
+              "https://img2.joongna.com/media/original/2026/08/19/1787123101047e0G_eumLM.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/19/1787123101150LA1_MY08M.jpg?impolicy=resize&format=webp",
+              "https://img2.joongna.com/media/original/2026/08/19/1787123101230k4F_jCQWv.jpg?impolicy=resize&format=webp"
+            ],
+            "description": "* 에어팟 프로 3세대    - 제품 상태 : 미개봉  - 제조일 : 2026년 6월    - 직거래 , 택배거래 다 합니다.  - 안심결제 해주시면 잘 포장해서 보내 드리겠습니다.   @ 네고 문의 차단",
+            "sku": "231675855",
+            "offers": {
+              "price": 280000,
+              "priceCurrency": "KRW",
+              "itemCondition": "https://schema.org/UsedCondition",
+              "availability": "https://schema.org/InStock",
+              "url": "https://web.joongna.com/product/231675855",
+              "seller": {
+                "@type": "Person",
+                "name": "ak20"
+              }
+            }
+          },
+          "jsonLdBreadcrumb": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "홈",
+              "item": "https://web.joongna.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "가전제품",
+              "item": "https://web.joongna.com/search?category=7"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "음향가전",
+              "item": "https://web.joongna.com/search?category=153"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "이어폰/헤드폰",
+              "item": "https://web.joongna.com/search?category=1171"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "에어팟 프로 3세대 / 미개봉"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "errors": []
+}

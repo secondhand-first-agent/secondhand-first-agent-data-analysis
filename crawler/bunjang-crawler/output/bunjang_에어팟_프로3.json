@@ -2,225 +2,1142 @@
   "query": "에어팟 프로3",
   "sort": "latest",
   "requestedCount": 5,
-  "collectedAt": "2026-08-19T06:43:20.214510+00:00",
+  "collectedAt": "2026-08-19T08:55:35.405505+00:00",
   "count": 5,
   "failedCount": 0,
   "products": [
     {
       "platform": "BUNJANG",
-      "platformProductId": "424509610",
-      "url": "https://m.bunjang.co.kr/products/424509610",
-      "title": "애플 에어팟 프로3 판매 미개봉 신품",
-      "description": "애플 에어팟 프로3 미개봉 신품 판매합니다. 사진에 보이는 그대로 깨끗한 상태입니다. 좋은 가격에 가져가세요. 구매 원하시면 바로 안전결제 해주시면 됩니다!",
-      "price": 256000,
-      "originalPrice": 256000,
-      "currency": "KRW",
-      "quantity": 1,
-      "saleStatus": "SELLING",
-      "condition": "NEW",
-      "conditionLabel": "새 상품 (미사용)",
-      "brand": "애플",
-      "category": "MP3/PMP",
-      "categories": [
-        "디지털",
-        "오디오/영상/관련기기",
-        "MP3/PMP"
-      ],
-      "location": null,
-      "freeShipping": true,
-      "inPersonTrade": false,
-      "favoriteCount": 4,
-      "viewCount": 142,
-      "chatCount": 6,
-      "commentCount": 0,
-      "images": [
-        "https://media.bunjang.co.kr/product/424509610_1_1786889566_w1200.jpg"
-      ],
-      "seller": {
-        "name": "박혜미777",
-        "reviewRating": 0.0,
-        "reviewCount": 0,
-        "salesCount": 1,
-        "isProshop": false
+      "platformProductId": "424831142",
+      "url": "https://m.bunjang.co.kr/products/424831142",
+      "common": {
+        "title": "애플 에어팟 프로 3세대 풀박스 교환or판매",
+        "description": "애플 에어팟 프로 3세대 판매해요\n추가 이어팁 전부 다 있고 ESR 케이스까지 드립니다 갤럭시로 넘어오면서 판매합니다! 평소에 소니,보스 등 여러 이어폰을 써서 사용은 적게했고 케이스에 항상보관해서 상태S급입니다! 본체도 찍힘 일절 없습니다+추가금액으로 버즈4프로도 구합니다",
+        "price": 240000,
+        "currency": "KRW",
+        "images": [
+          "https://media.bunjang.co.kr/product/424831142_1_1787129442_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424831142_2_1787129442_w1200.jpg"
+        ]
       },
-      "createdAt": "2026-08-16T14:12:47Z",
-      "updatedAt": "2026-08-19T06:41:40.180817Z",
-      "isSearchAd": false
+      "bunjang": {
+        "search": {
+          "pid": 424831142,
+          "name": "애플 에어팟 프로 3세대 풀박스 교환or판매",
+          "price": 240000,
+          "status": "SELLING",
+          "productImage": "https://media.bunjang.co.kr/product/424831142_1_1787129442_w{res}.jpg",
+          "shop": {
+            "isOfficialSeller": false
+          },
+          "faved": false,
+          "favoriteCount": 0,
+          "buntalkCount": 0,
+          "updatedAt": "2026-08-19T08:50:42Z",
+          "updatedBefore": "4분 전",
+          "care": false,
+          "video": false,
+          "ad": false,
+          "type": "PRODUCT"
+        },
+        "detail": {
+          "product": {
+            "pid": 424831142,
+            "name": "애플 에어팟 프로 3세대 풀박스 교환or판매",
+            "description": "애플 에어팟 프로 3세대 판매해요\n추가 이어팁 전부 다 있고 ESR 케이스까지 드립니다 갤럭시로 넘어오면서 판매합니다! 평소에 소니,보스 등 여러 이어폰을 써서 사용은 적게했고 케이스에 항상보관해서 상태S급입니다! 본체도 찍힘 일절 없습니다+추가금액으로 버즈4프로도 구합니다",
+            "price": 240000,
+            "originPrice": 240000,
+            "qty": 1,
+            "ad": false,
+            "inspectionStatus": "NON_TARGET",
+            "saleStatus": "SELLING",
+            "condition": "LIGHTLY_USED",
+            "keywords": [],
+            "imageUrl": "https://media.bunjang.co.kr/product/424831142_{cnt}_1787129442_w{res}.jpg",
+            "imageCount": 2,
+            "geo": {
+              "address": "경기도 수원시 팔달구 화서1동"
+            },
+            "geoLabel": "팔달구 화서1동",
+            "metrics": {
+              "favoriteCount": 0,
+              "buntalkCount": 0,
+              "viewCount": 1,
+              "commentCount": 0
+            },
+            "category": {
+              "id": "600500010",
+              "name": "이어폰",
+              "isEnable": true
+            },
+            "categories": [
+              {
+                "id": "600",
+                "name": "디지털",
+                "isEnable": true
+              },
+              {
+                "id": "600500",
+                "name": "오디오/영상/관련기기",
+                "isEnable": true
+              },
+              {
+                "id": "600500010",
+                "name": "이어폰",
+                "isEnable": true
+              }
+            ],
+            "updatedAt": "2026-08-19T08:50:42.570545Z",
+            "describedAt": "2026-08-19T08:50:43Z",
+            "updatedBefore": "4분 전",
+            "options": [],
+            "trade": {
+              "freeShipping": false,
+              "shippingSpecs": {
+                "DEFAULT": {
+                  "fee": 4000
+                },
+                "GS_HALF_PRICE": {
+                  "fee": 2000
+                },
+                "CU_THRIFTY": {
+                  "fee": 2000
+                }
+              },
+              "inPerson": true
+            },
+            "trades": [
+              {
+                "title": "배송비",
+                "tooltip": "일반 택배는 원하는 장소로 배송받고,\n반값택배는 편의점에서 배송받아요.",
+                "contents": [
+                  "일반 4,000원",
+                  "GS • CU반값 2,000원"
+                ],
+                "separator": "  |  "
+              },
+              {
+                "title": "직거래 희망 장소",
+                "contents": [
+                  "경기도 수원시 팔달구 화서1동"
+                ]
+              }
+            ],
+            "isCashable": false,
+            "isHidden": false
+          },
+          "bunpay": {
+            "enabled": true,
+            "shipping": true,
+            "inPerson": true
+          },
+          "reportBottomBanner": {
+            "text": "현금 거래는 개인 정보 노출 및 사기 위험이 있어, 안전결제로만 거래 가능해요.",
+            "subText": "안전한 중고거래 문화 함께하기",
+            "webUrl": "https://exhibition.bunjang.co.kr/viewer/fraudpatterns"
+          },
+          "features": [
+            {
+              "iconUrl": "https://static.bunjang.co.kr/products/product-detail/feature-icons/pay_v3.webp",
+              "title": "결제혜택",
+              "contents": [
+                {
+                  "text": "삼성카드 링크 10% 청구할인",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/samsungcardlink2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "토스페이 결제 시 번개포인트 0.5% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/tosspay2026?utm_source=bunjang&utm_medium=event&utm_campaign=20260101"
+                }
+              ],
+              "moreContents": [
+                {
+                  "text": "계좌 간편결제 시 번개포인트 1% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/simplepayment2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "무이자할부/카드포인트 결제 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/pay2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                }
+              ]
+            }
+          ],
+          "shop": {
+            "name": "성주임다",
+            "imageUrl": "",
+            "reviewRating": 0.0,
+            "followerCount": 0,
+            "proshop": {
+              "isProshop": false,
+              "isRestrictedCandidate": false
+            },
+            "joinDate": "2023-07-02T03:29:53Z",
+            "followingAllowed": false,
+            "reviewCount": 0,
+            "salesCount": 0,
+            "isOfficialSeller": false
+          },
+          "shopProductCount": 1,
+          "shopProducts": [
+            {
+              "pid": 424639403,
+              "name": "애플워치 SE 40mm 스페이스 그레이 알루미늄",
+              "price": 20000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424639403_1_1786977826_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            }
+          ],
+          "reportUrl": "https://help.bunjang.co.kr/report/new/424831142?type=product",
+          "purchaseWebUrl": "https://pay2.bunjang.co.kr/payment/choose-option/424831142",
+          "productSpecs": [
+            {
+              "title": "상품상태",
+              "content": "사용감 적음"
+            },
+            {
+              "title": "수량",
+              "content": "1개"
+            }
+          ],
+          "enabledMultiOrder": false,
+          "showCareContent": false
+        }
+      }
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424558107",
+      "url": "https://m.bunjang.co.kr/products/424558107",
+      "common": {
+        "title": "에어팟 프로3 본체(18일까지 이가격)",
+        "description": "에어팟 프로3 본체 판매합니다. 100% 정품이고, 사용감 거의 없는 상태 좋은 제품입니다. 구매 원하시면 바로 안전결제 해주시면 됩니다!",
+        "price": 77777,
+        "currency": "KRW",
+        "images": [
+          "https://media.bunjang.co.kr/product/424558107_1_1786981529_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424558107_2_1786981529_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424558107_3_1786981529_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424558107_4_1786981529_w1200.jpg"
+        ]
+      },
+      "bunjang": {
+        "search": {
+          "pid": 424558107,
+          "name": "에어팟 프로3 본체(18일까지 이가격)",
+          "price": 77777,
+          "status": "SELLING",
+          "productImage": "https://media.bunjang.co.kr/product/424558107_1_1786981529_w{res}.jpg",
+          "shop": {
+            "isOfficialSeller": false
+          },
+          "faved": false,
+          "favoriteCount": 0,
+          "buntalkCount": 0,
+          "updatedAt": "2026-08-19T08:40:33Z",
+          "updatedBefore": "14분 전",
+          "care": false,
+          "video": false,
+          "ad": false,
+          "type": "PRODUCT"
+        },
+        "detail": {
+          "product": {
+            "pid": 424558107,
+            "name": "에어팟 프로3 본체(18일까지 이가격)",
+            "description": "에어팟 프로3 본체 판매합니다. 100% 정품이고, 사용감 거의 없는 상태 좋은 제품입니다. 구매 원하시면 바로 안전결제 해주시면 됩니다!",
+            "price": 77777,
+            "originPrice": 77777,
+            "qty": 1,
+            "ad": false,
+            "inspectionStatus": "NON_TARGET",
+            "saleStatus": "SELLING",
+            "condition": "LIGHTLY_USED",
+            "keywords": [],
+            "imageUrl": "https://media.bunjang.co.kr/product/424558107_{cnt}_1786981529_w{res}.jpg",
+            "imageCount": 4,
+            "metrics": {
+              "favoriteCount": 0,
+              "buntalkCount": 0,
+              "viewCount": 10,
+              "commentCount": 0
+            },
+            "category": {
+              "id": "600500010",
+              "name": "이어폰",
+              "isEnable": true
+            },
+            "categories": [
+              {
+                "id": "600",
+                "name": "디지털",
+                "isEnable": true
+              },
+              {
+                "id": "600500",
+                "name": "오디오/영상/관련기기",
+                "isEnable": true
+              },
+              {
+                "id": "600500010",
+                "name": "이어폰",
+                "isEnable": true
+              }
+            ],
+            "brand": {
+              "id": 130,
+              "name": "애플"
+            },
+            "updatedAt": "2026-08-19T08:40:33.207179Z",
+            "describedAt": "2026-08-17T04:43:49Z",
+            "updatedBefore": "15분 전",
+            "options": [],
+            "trade": {
+              "freeShipping": false,
+              "shippingSpecs": {
+                "DEFAULT": {
+                  "fee": 4400
+                },
+                "GS_HALF_PRICE": {
+                  "fee": 1800
+                },
+                "CU_THRIFTY": {
+                  "fee": 1800
+                }
+              },
+              "inPerson": false
+            },
+            "trades": [
+              {
+                "title": "배송비",
+                "tooltip": "일반 택배는 원하는 장소로 배송받고,\n반값택배는 편의점에서 배송받아요.",
+                "contents": [
+                  "일반 4,400원",
+                  "GS • CU반값 1,800원"
+                ],
+                "separator": "  |  "
+              }
+            ],
+            "isCashable": false,
+            "isHidden": false
+          },
+          "bunpay": {
+            "enabled": true,
+            "shipping": true,
+            "inPerson": true
+          },
+          "reportBottomBanner": {
+            "text": "현금 거래는 개인 정보 노출 및 사기 위험이 있어, 안전결제로만 거래 가능해요.",
+            "subText": "안전한 중고거래 문화 함께하기",
+            "webUrl": "https://exhibition.bunjang.co.kr/viewer/fraudpatterns"
+          },
+          "features": [
+            {
+              "iconUrl": "https://static.bunjang.co.kr/products/product-detail/feature-icons/pay_v3.webp",
+              "title": "결제혜택",
+              "contents": [
+                {
+                  "text": "삼성카드 링크 10% 청구할인",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/samsungcardlink2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "토스페이 결제 시 번개포인트 0.5% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/tosspay2026?utm_source=bunjang&utm_medium=event&utm_campaign=20260101"
+                }
+              ],
+              "moreContents": [
+                {
+                  "text": "계좌 간편결제 시 번개포인트 1% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/simplepayment2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "무이자할부/카드포인트 결제 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/pay2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                }
+              ]
+            }
+          ],
+          "shop": {
+            "name": "11디노",
+            "imageUrl": "",
+            "reviewRating": 5.0,
+            "followerCount": 0,
+            "proshop": {
+              "isProshop": false,
+              "isRestrictedCandidate": false
+            },
+            "joinDate": "2025-05-24T15:58:38Z",
+            "followingAllowed": false,
+            "reviewCount": 8,
+            "salesCount": 12,
+            "isOfficialSeller": false
+          },
+          "shopProductCount": 3,
+          "shopProducts": [
+            {
+              "pid": 424558041,
+              "name": "에어팟 프로3 왼쪽 (18일까지 이가격)",
+              "price": 77777,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424558041_1_1786981491_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424770218,
+              "name": "에어팟 프로3",
+              "price": 155000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424770218_1_1787074676_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            }
+          ],
+          "reportUrl": "https://help.bunjang.co.kr/report/new/424558107?type=product",
+          "purchaseWebUrl": "https://pay2.bunjang.co.kr/payment/choose-option/424558107",
+          "productSpecs": [
+            {
+              "title": "상품상태",
+              "content": "사용감 적음"
+            },
+            {
+              "title": "수량",
+              "content": "1개"
+            }
+          ],
+          "enabledMultiOrder": false,
+          "showCareContent": false
+        }
+      }
+    },
+    {
+      "platform": "BUNJANG",
+      "platformProductId": "424182290",
+      "url": "https://m.bunjang.co.kr/products/424182290",
+      "common": {
+        "title": "에어팟 프로3 3세대 본체(보증유효)",
+        "description": "에어팟 프로3 본체만 판매합니다. 박스에 보관해서 상태 좋습니다. 문의 없으시면 바로 안전결제해주시면 됩니다!\n기능하자 x\n구매하시면 소독해서 보내드려요\n\n\n\n이용안내\n-하나의 상품의 중복으로 주문될 경우 부득이하게 품절되는 경우가 생길수도있습니다\n-판매 중인 모든 상품은 같은 모델이더라도 상품의 상태가 모두 다른 단일 상품입니다\n-중고 제품 특정상 이미지에 보아지 않는 미세한 얼룩이나\n스크레치가 존재할수도있습니다\n\n배송안내\n-평일 오후 2시 이전 결제 건은 당일출고,상품 배송은 결제일로부터 평균 1일에서2일 소용됩니다\n\n반값택배로 구매하시면 바로 택배 붙여드려요",
+        "price": 102900,
+        "currency": "KRW",
+        "images": [
+          "https://media.bunjang.co.kr/product/424182290_1_1786857247_w1200.jpg"
+        ]
+      },
+      "bunjang": {
+        "search": {
+          "pid": 424182290,
+          "name": "에어팟 프로3 3세대 본체(보증유효)",
+          "price": 102900,
+          "status": "SELLING",
+          "productImage": "https://media.bunjang.co.kr/product/424182290_1_1786857247_w{res}.jpg",
+          "shop": {
+            "isOfficialSeller": false
+          },
+          "faved": false,
+          "favoriteCount": 1,
+          "buntalkCount": 0,
+          "updatedAt": "2026-08-19T08:33:48Z",
+          "updatedBefore": "21분 전",
+          "care": false,
+          "video": false,
+          "ad": false,
+          "type": "PRODUCT"
+        },
+        "detail": {
+          "product": {
+            "pid": 424182290,
+            "name": "에어팟 프로3 3세대 본체(보증유효)",
+            "description": "에어팟 프로3 본체만 판매합니다. 박스에 보관해서 상태 좋습니다. 문의 없으시면 바로 안전결제해주시면 됩니다!\n기능하자 x\n구매하시면 소독해서 보내드려요\n\n\n\n이용안내\n-하나의 상품의 중복으로 주문될 경우 부득이하게 품절되는 경우가 생길수도있습니다\n-판매 중인 모든 상품은 같은 모델이더라도 상품의 상태가 모두 다른 단일 상품입니다\n-중고 제품 특정상 이미지에 보아지 않는 미세한 얼룩이나\n스크레치가 존재할수도있습니다\n\n배송안내\n-평일 오후 2시 이전 결제 건은 당일출고,상품 배송은 결제일로부터 평균 1일에서2일 소용됩니다\n\n반값택배로 구매하시면 바로 택배 붙여드려요",
+            "price": 102900,
+            "originPrice": 102900,
+            "qty": 1,
+            "ad": false,
+            "inspectionStatus": "NON_TARGET",
+            "saleStatus": "SELLING",
+            "condition": "LIKE_NEW",
+            "keywords": [],
+            "imageUrl": "https://media.bunjang.co.kr/product/424182290_{cnt}_1786857247_w{res}.jpg",
+            "imageCount": 1,
+            "metrics": {
+              "favoriteCount": 1,
+              "buntalkCount": 0,
+              "viewCount": 59,
+              "commentCount": 0
+            },
+            "category": {
+              "id": "600500010",
+              "name": "이어폰",
+              "isEnable": true
+            },
+            "categories": [
+              {
+                "id": "600",
+                "name": "디지털",
+                "isEnable": true
+              },
+              {
+                "id": "600500",
+                "name": "오디오/영상/관련기기",
+                "isEnable": true
+              },
+              {
+                "id": "600500010",
+                "name": "이어폰",
+                "isEnable": true
+              }
+            ],
+            "brand": {
+              "id": 130,
+              "name": "애플"
+            },
+            "updatedAt": "2026-08-19T08:33:48.71668Z",
+            "describedAt": "2026-08-13T14:30:03Z",
+            "updatedBefore": "21분 전",
+            "options": [],
+            "trade": {
+              "freeShipping": false,
+              "shippingSpecs": {
+                "DEFAULT": {
+                  "fee": 5000
+                },
+                "GS_HALF_PRICE": {
+                  "fee": 4000
+                },
+                "CU_THRIFTY": {
+                  "fee": 4000
+                }
+              },
+              "inPerson": false
+            },
+            "trades": [
+              {
+                "title": "배송비",
+                "tooltip": "일반 택배는 원하는 장소로 배송받고,\n반값택배는 편의점에서 배송받아요.",
+                "contents": [
+                  "일반 5,000원",
+                  "GS • CU반값 4,000원"
+                ],
+                "separator": "  |  "
+              }
+            ],
+            "isCashable": false,
+            "isHidden": false
+          },
+          "bunpay": {
+            "enabled": true,
+            "shipping": true,
+            "inPerson": true
+          },
+          "reportBottomBanner": {
+            "text": "현금 거래는 개인 정보 노출 및 사기 위험이 있어, 안전결제로만 거래 가능해요.",
+            "subText": "안전한 중고거래 문화 함께하기",
+            "webUrl": "https://exhibition.bunjang.co.kr/viewer/fraudpatterns"
+          },
+          "features": [
+            {
+              "iconUrl": "https://static.bunjang.co.kr/products/product-detail/feature-icons/pay_v3.webp",
+              "title": "결제혜택",
+              "contents": [
+                {
+                  "text": "삼성카드 링크 10% 청구할인",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/samsungcardlink2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "토스페이 결제 시 번개포인트 0.5% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/tosspay2026?utm_source=bunjang&utm_medium=event&utm_campaign=20260101"
+                }
+              ],
+              "moreContents": [
+                {
+                  "text": "계좌 간편결제 시 번개포인트 1% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/simplepayment2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "무이자할부/카드포인트 결제 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/pay2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "국민/롯데/하나카드 최대 24개월 장기할부 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/card2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/card2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                }
+              ]
+            }
+          ],
+          "shop": {
+            "name": "정품만판매행요구르트",
+            "imageUrl": "",
+            "reviewRating": 0.0,
+            "followerCount": 0,
+            "proshop": {
+              "isProshop": true,
+              "isRestrictedCandidate": false
+            },
+            "joinDate": "2026-08-13T14:23:41Z",
+            "followingAllowed": false,
+            "shopTypeBadgeUrl": "https://static.bunjang.co.kr/shoptype_badges/ic_proshop_badge_2025.webp",
+            "reviewCount": 0,
+            "salesCount": 0,
+            "isOfficialSeller": false
+          },
+          "shopProductCount": 13,
+          "shopProducts": [
+            {
+              "pid": 424183783,
+              "name": "애플 에어팟 프로2 2세대 c타입 본체",
+              "price": 62900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424183783_1_1786857183_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424182491,
+              "name": "에어팟4 4세대 노이즈캔슬링 왼쪽",
+              "price": 72900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424182491_1_1786857228_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424630251,
+              "name": "애플 에어팟 프로2 2세대 c타입 오른쪽",
+              "price": 72900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424630251_1_1786973316_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424184030,
+              "name": "에어팟 프로2 2세대 c타입 왼쪽",
+              "price": 72900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424184030_1_1786857164_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424181964,
+              "name": "에어팟4 4세대 노이즈캔슬링",
+              "price": 67900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424181964_1_1786857073_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424182129,
+              "name": "애플 에어팟 프로3 3세대 왼쪽 (보증유효)",
+              "price": 102900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424182129_1_1786857273_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424184096,
+              "name": "애플 에어팟 프로2 2세대 본체 8핀",
+              "price": 56900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424184096_1_1786857153_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424184200,
+              "name": "에어팟 프로2 2세대 오른쪽 8핀",
+              "price": 68900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424184200_1_1786857145_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424750684,
+              "name": "에어팟4 4세대 노이즈캔슬링 오른쪽",
+              "price": 72900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424750684_1_1787060467_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424184308,
+              "name": "에어팟 프로2 2세대 왼쪽 8핀",
+              "price": 68900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424184308_1_1786857136_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424183252,
+              "name": "애플 에어팟 프로1 1세대 오른쪽",
+              "price": 42900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424183252_1_1786857197_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424183055,
+              "name": "애플 에어팟 프로1 1세대 본체",
+              "price": 42900,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424183055_1_1786857207_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            }
+          ],
+          "reportUrl": "https://help.bunjang.co.kr/report/new/424182290?type=product",
+          "purchaseWebUrl": "https://pay2.bunjang.co.kr/payment/choose-option/424182290",
+          "productSpecs": [
+            {
+              "title": "상품상태",
+              "content": "사용감 없음"
+            },
+            {
+              "title": "수량",
+              "content": "1개"
+            }
+          ],
+          "enabledMultiOrder": false,
+          "showCareContent": false
+        }
+      }
     },
     {
       "platform": "BUNJANG",
       "platformProductId": "424288893",
       "url": "https://m.bunjang.co.kr/products/424288893",
-      "title": "[찍힘X]에어팟프로3 프로3세대 본체",
-      "description": "에어팟 프로3세대 본체 판매합니다\n\n&제품 정보\n• 모델: 에어팟 프로3세대 본체\n• 상태: 사진과 동일 (노캔.충전.통화 등 기능 정상)\n\n&검수 및 발송\n• 모든 기능 직접 확인 후 발송\n• 알코올 소독 및 안전포장\n• 페어링 후 바로 사용 가능\n\n&거래 안내\n• 당일~익일 발송\n• 안전결제로만 진행\n• 구매 후 페어링 문의 및 사용 중 궁금한 점 환영\n\n후기 믿어주시고 후회하지 않게 해드리겠습니다.\n별도 문의 없을 시 안전결제 바로 해주세요!\n+ 비싼 데는 이유가 있는 겁니다.",
-      "price": 90000,
-      "originalPrice": 90000,
-      "currency": "KRW",
-      "quantity": 1,
-      "saleStatus": "SELLING",
-      "condition": "LIGHTLY_USED",
-      "conditionLabel": "사용감 적음",
-      "brand": "애플",
-      "category": "이어폰",
-      "categories": [
-        "디지털",
-        "오디오/영상/관련기기",
-        "이어폰"
-      ],
-      "location": null,
-      "freeShipping": false,
-      "inPersonTrade": false,
-      "favoriteCount": 2,
-      "viewCount": 46,
-      "chatCount": 4,
-      "commentCount": 0,
-      "images": [
-        "https://media.bunjang.co.kr/product/424288893_1_1787073634_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424288893_2_1787073634_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424288893_3_1787073634_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424288893_4_1787073634_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424288893_5_1787073634_w1200.jpg"
-      ],
-      "seller": {
-        "name": "에이치팟",
-        "reviewRating": 5.0,
-        "reviewCount": 30,
-        "salesCount": 26,
-        "isProshop": true
+      "common": {
+        "title": "[찍힘X]에어팟프로3 프로3세대 본체",
+        "description": "에어팟 프로3세대 본체 판매합니다\n\n&제품 정보\n• 모델: 에어팟 프로3세대 본체\n• 상태: 사진과 동일 (노캔.충전.통화 등 기능 정상)\n\n&검수 및 발송\n• 모든 기능 직접 확인 후 발송\n• 알코올 소독 및 안전포장\n• 페어링 후 바로 사용 가능\n\n&거래 안내\n• 당일~익일 발송\n• 안전결제로만 진행\n• 구매 후 페어링 문의 및 사용 중 궁금한 점 환영\n\n후기 믿어주시고 후회하지 않게 해드리겠습니다.\n별도 문의 없을 시 안전결제 바로 해주세요!\n+ 비싼 데는 이유가 있는 겁니다.",
+        "price": 90000,
+        "currency": "KRW",
+        "images": [
+          "https://media.bunjang.co.kr/product/424288893_1_1787073634_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424288893_2_1787073634_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424288893_3_1787073634_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424288893_4_1787073634_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424288893_5_1787073634_w1200.jpg"
+        ]
       },
-      "createdAt": "2026-08-14T14:02:11Z",
-      "updatedAt": "2026-08-19T06:31:52.596832Z",
-      "isSearchAd": false
+      "bunjang": {
+        "search": {
+          "pid": 424288893,
+          "name": "[찍힘X]에어팟프로3 프로3세대 본체",
+          "price": 90000,
+          "status": "SELLING",
+          "productImage": "https://media.bunjang.co.kr/product/424288893_1_1787073634_w{res}.jpg",
+          "shop": {
+            "isOfficialSeller": false
+          },
+          "faved": false,
+          "favoriteCount": 3,
+          "buntalkCount": 4,
+          "updatedAt": "2026-08-19T08:32:20Z",
+          "updatedBefore": "23분 전",
+          "care": false,
+          "video": false,
+          "ad": false,
+          "type": "PRODUCT"
+        },
+        "detail": {
+          "product": {
+            "pid": 424288893,
+            "name": "[찍힘X]에어팟프로3 프로3세대 본체",
+            "description": "에어팟 프로3세대 본체 판매합니다\n\n&제품 정보\n• 모델: 에어팟 프로3세대 본체\n• 상태: 사진과 동일 (노캔.충전.통화 등 기능 정상)\n\n&검수 및 발송\n• 모든 기능 직접 확인 후 발송\n• 알코올 소독 및 안전포장\n• 페어링 후 바로 사용 가능\n\n&거래 안내\n• 당일~익일 발송\n• 안전결제로만 진행\n• 구매 후 페어링 문의 및 사용 중 궁금한 점 환영\n\n후기 믿어주시고 후회하지 않게 해드리겠습니다.\n별도 문의 없을 시 안전결제 바로 해주세요!\n+ 비싼 데는 이유가 있는 겁니다.",
+            "price": 90000,
+            "originPrice": 90000,
+            "qty": 1,
+            "ad": false,
+            "inspectionStatus": "NON_TARGET",
+            "saleStatus": "SELLING",
+            "condition": "LIGHTLY_USED",
+            "keywords": [
+              "에어팟프로3",
+              "에어팟프로3세대",
+              "에어팟프로3본체",
+              "에어팟프로",
+              "에어팟R"
+            ],
+            "imageUrl": "https://media.bunjang.co.kr/product/424288893_{cnt}_1787073634_w{res}.jpg",
+            "imageCount": 5,
+            "metrics": {
+              "favoriteCount": 3,
+              "buntalkCount": 4,
+              "viewCount": 49,
+              "commentCount": 0
+            },
+            "category": {
+              "id": "600500010",
+              "name": "이어폰",
+              "isEnable": true
+            },
+            "categories": [
+              {
+                "id": "600",
+                "name": "디지털",
+                "isEnable": true
+              },
+              {
+                "id": "600500",
+                "name": "오디오/영상/관련기기",
+                "isEnable": true
+              },
+              {
+                "id": "600500010",
+                "name": "이어폰",
+                "isEnable": true
+              }
+            ],
+            "brand": {
+              "id": 130,
+              "name": "애플"
+            },
+            "updatedAt": "2026-08-19T08:32:20.103081Z",
+            "describedAt": "2026-08-14T14:02:11Z",
+            "updatedBefore": "23분 전",
+            "options": [],
+            "trade": {
+              "freeShipping": false,
+              "shippingSpecs": {
+                "DEFAULT": {
+                  "fee": 5000
+                }
+              },
+              "inPerson": false
+            },
+            "trades": [
+              {
+                "title": "배송비",
+                "contents": [
+                  "일반 5,000원"
+                ]
+              }
+            ],
+            "isCashable": false,
+            "isHidden": false
+          },
+          "bunpay": {
+            "enabled": true,
+            "shipping": true,
+            "inPerson": true
+          },
+          "reportBottomBanner": {
+            "text": "현금 거래는 개인 정보 노출 및 사기 위험이 있어, 안전결제로만 거래 가능해요.",
+            "subText": "안전한 중고거래 문화 함께하기",
+            "webUrl": "https://exhibition.bunjang.co.kr/viewer/fraudpatterns"
+          },
+          "features": [
+            {
+              "iconUrl": "https://static.bunjang.co.kr/products/product-detail/feature-icons/pay_v3.webp",
+              "title": "결제혜택",
+              "contents": [
+                {
+                  "text": "삼성카드 링크 10% 청구할인",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/samsungcardlink2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "토스페이 결제 시 번개포인트 0.5% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/tosspay2026?utm_source=bunjang&utm_medium=event&utm_campaign=20260101"
+                }
+              ],
+              "moreContents": [
+                {
+                  "text": "계좌 간편결제 시 번개포인트 1% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/simplepayment2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "무이자할부/카드포인트 결제 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/pay2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "국민/롯데/하나카드 최대 24개월 장기할부 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/card2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/card2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                }
+              ]
+            }
+          ],
+          "shop": {
+            "name": "에이치팟",
+            "imageUrl": "https://media.bunjang.co.kr/images/crop/1790078848_w{res}.jpg",
+            "reviewRating": 5.0,
+            "followerCount": 0,
+            "proshop": {
+              "isProshop": true,
+              "isRestrictedCandidate": false
+            },
+            "joinDate": "2026-02-16T09:02:09Z",
+            "followingAllowed": false,
+            "shopTypeBadgeUrl": "https://static.bunjang.co.kr/shoptype_badges/ic_proshop_badge_2025.webp",
+            "reviewCount": 30,
+            "salesCount": 26,
+            "isOfficialSeller": false
+          },
+          "shopProductCount": 4,
+          "shopProducts": [
+            {
+              "pid": 424237916,
+              "name": "[이어팁새거]에어팟프로2 프로2세대 C타입 왼쪽유닛",
+              "price": 65000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424237916_1_1787073670_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424286572,
+              "name": "에어팟프로3 프로3세대 오른쪽유닛",
+              "price": 90000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424286572_1_1787073649_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424243105,
+              "name": "에어팟프로2 프로2세대 C타입 왼쪽유닛",
+              "price": 65000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424243105_1_1787073663_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            }
+          ],
+          "reportUrl": "https://help.bunjang.co.kr/report/new/424288893?type=product",
+          "purchaseWebUrl": "https://pay2.bunjang.co.kr/payment/choose-option/424288893",
+          "productSpecs": [
+            {
+              "title": "상품상태",
+              "content": "사용감 적음"
+            },
+            {
+              "title": "수량",
+              "content": "1개"
+            }
+          ],
+          "enabledMultiOrder": false,
+          "showCareContent": false
+        }
+      }
     },
     {
       "platform": "BUNJANG",
-      "platformProductId": "412139302",
-      "url": "https://m.bunjang.co.kr/products/412139302",
-      "title": "에어팟 프로 3 미사용/세제품",
-      "description": "애플 코리아 정품\n에어팟 프로 3 \n완전 미사용 제품\n단품",
-      "price": 250000,
-      "originalPrice": 250000,
-      "currency": "KRW",
-      "quantity": 11,
-      "saleStatus": "SELLING",
-      "condition": "NEW",
-      "conditionLabel": "새 상품 (미사용)",
-      "brand": "애플",
-      "category": "이어폰",
-      "categories": [
-        "디지털",
-        "오디오/영상/관련기기",
-        "이어폰"
-      ],
-      "location": "동구 안심3.4동",
-      "freeShipping": false,
-      "inPersonTrade": true,
-      "favoriteCount": 257,
-      "viewCount": 5077,
-      "chatCount": 76,
-      "commentCount": 0,
-      "images": [
-        "https://media.bunjang.co.kr/product/412139302_1_1786066370_w1200.jpg",
-        "https://media.bunjang.co.kr/product/412139302_2_1786066370_w1200.jpg",
-        "https://media.bunjang.co.kr/product/412139302_3_1786066370_w1200.jpg",
-        "https://media.bunjang.co.kr/product/412139302_4_1786066370_w1200.jpg",
-        "https://media.bunjang.co.kr/product/412139302_5_1786066370_w1200.jpg"
-      ],
-      "seller": {
-        "name": "후기100",
-        "reviewRating": 4.9,
-        "reviewCount": 65,
-        "salesCount": 70,
-        "isProshop": true
+      "platformProductId": "424508040",
+      "url": "https://m.bunjang.co.kr/products/424508040",
+      "common": {
+        "title": "에어팟 프로3세대 풀박스",
+        "description": "에어팟 프로 3세대 풀박스 판매합니다\n\n선물받고 3번도 안 쓴거같습니다 상태 최상 입니다\n\n보증 26.09.23 까지 남아있습니다",
+        "price": 269000,
+        "currency": "KRW",
+        "images": [
+          "https://media.bunjang.co.kr/product/424508040_1_1786889450_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424508040_2_1786889450_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424508040_3_1786889450_w1200.jpg",
+          "https://media.bunjang.co.kr/product/424508040_4_1786889450_w1200.jpg"
+        ]
       },
-      "createdAt": "2026-06-03T12:25:40Z",
-      "updatedAt": "2026-08-19T06:20:00Z",
-      "isSearchAd": false
-    },
-    {
-      "platform": "BUNJANG",
-      "platformProductId": "424485193",
-      "url": "https://m.bunjang.co.kr/products/424485193",
-      "title": "애플 에어팟 프로 3 (미개봉) 능동형 노이즈 캔슬링 블루투스 이어폰",
-      "description": "애플 에어팟 프로 3세대 미개봉 새 상품 판매합니다.\n사진에 보이는 것처럼 박스 상태 그대로 보관 중이며, 구성품 모두 포함되어 있습니다.\n최신 모델로 음질 및 노이즈 캔슬링 성능이 뛰어납니다.\n추가 문의 없으시면 바로 안전결제 해주시면 됩니다!",
-      "price": 254000,
-      "originalPrice": 254000,
-      "currency": "KRW",
-      "quantity": 1,
-      "saleStatus": "SELLING",
-      "condition": "NEW",
-      "conditionLabel": "새 상품 (미사용)",
-      "brand": "애플",
-      "category": "이어폰",
-      "categories": [
-        "디지털",
-        "오디오/영상/관련기기",
-        "이어폰"
-      ],
-      "location": null,
-      "freeShipping": true,
-      "inPersonTrade": false,
-      "favoriteCount": 3,
-      "viewCount": 110,
-      "chatCount": 1,
-      "commentCount": 0,
-      "images": [
-        "https://media.bunjang.co.kr/product/424485193_1_1786878323_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424485193_2_1786878323_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424485193_3_1786878323_w1200.jpg"
-      ],
-      "seller": {
-        "name": "상점86735123호",
-        "reviewRating": 0.0,
-        "reviewCount": 0,
-        "salesCount": 0,
-        "isProshop": false
-      },
-      "createdAt": "2026-08-16T11:05:24Z",
-      "updatedAt": "2026-08-19T06:17:16.804247Z",
-      "isSearchAd": false
-    },
-    {
-      "platform": "BUNJANG",
-      "platformProductId": "424676370",
-      "url": "https://m.bunjang.co.kr/products/424676370",
-      "title": "APPLE AirPods Pro 3 (미개봉)",
-      "description": "미개봉 새 상품 애플 에어팟 프로 3세대 판매합니다.\n박스에 그려진 에어팟 프로 디자인처럼 깔끔한 화이트 색상입니다.\n선물용이나 개인 소장용으로도 좋습니다.\n구매 원하시면 바로 안전결제 해주시면 됩니다!",
-      "price": 261000,
-      "originalPrice": 261000,
-      "currency": "KRW",
-      "quantity": 1,
-      "saleStatus": "SELLING",
-      "condition": "NEW",
-      "conditionLabel": "새 상품 (미사용)",
-      "brand": "애플",
-      "category": "이어폰",
-      "categories": [
-        "디지털",
-        "오디오/영상/관련기기",
-        "이어폰"
-      ],
-      "location": null,
-      "freeShipping": true,
-      "inPersonTrade": false,
-      "favoriteCount": 1,
-      "viewCount": 44,
-      "chatCount": 0,
-      "commentCount": 0,
-      "images": [
-        "https://media.bunjang.co.kr/product/424676370_1_1787026301_w1200.jpg",
-        "https://media.bunjang.co.kr/product/424676370_2_1787026301_w1200.jpg"
-      ],
-      "seller": {
-        "name": "상점79443164호",
-        "reviewRating": 0.0,
-        "reviewCount": 0,
-        "salesCount": 0,
-        "isProshop": false
-      },
-      "createdAt": "2026-08-18T04:11:41Z",
-      "updatedAt": "2026-08-19T06:17:13.861421Z",
-      "isSearchAd": false
+      "bunjang": {
+        "search": {
+          "pid": 424508040,
+          "name": "에어팟 프로3세대 풀박스",
+          "price": 269000,
+          "status": "SELLING",
+          "productImage": "https://media.bunjang.co.kr/product/424508040_1_1786889450_w{res}.jpg",
+          "shop": {
+            "isOfficialSeller": false
+          },
+          "faved": false,
+          "favoriteCount": 0,
+          "buntalkCount": 0,
+          "updatedAt": "2026-08-19T08:20:02Z",
+          "updatedBefore": "35분 전",
+          "care": false,
+          "video": false,
+          "ad": false,
+          "type": "PRODUCT"
+        },
+        "detail": {
+          "product": {
+            "pid": 424508040,
+            "name": "에어팟 프로3세대 풀박스",
+            "description": "에어팟 프로 3세대 풀박스 판매합니다\n\n선물받고 3번도 안 쓴거같습니다 상태 최상 입니다\n\n보증 26.09.23 까지 남아있습니다",
+            "price": 269000,
+            "originPrice": 269000,
+            "qty": 1,
+            "ad": false,
+            "inspectionStatus": "NON_TARGET",
+            "saleStatus": "SELLING",
+            "condition": "NEW",
+            "keywords": [],
+            "imageUrl": "https://media.bunjang.co.kr/product/424508040_{cnt}_1786889450_w{res}.jpg",
+            "imageCount": 4,
+            "geo": {
+              "address": "광주광역시 광산구 첨단2동"
+            },
+            "geoLabel": "광산구 첨단2동",
+            "metrics": {
+              "favoriteCount": 0,
+              "buntalkCount": 0,
+              "viewCount": 21,
+              "commentCount": 0
+            },
+            "category": {
+              "id": "600500010",
+              "name": "이어폰",
+              "isEnable": true
+            },
+            "categories": [
+              {
+                "id": "600",
+                "name": "디지털",
+                "isEnable": true
+              },
+              {
+                "id": "600500",
+                "name": "오디오/영상/관련기기",
+                "isEnable": true
+              },
+              {
+                "id": "600500010",
+                "name": "이어폰",
+                "isEnable": true
+              }
+            ],
+            "brand": {
+              "id": 130,
+              "name": "애플"
+            },
+            "updatedAt": "2026-08-19T08:20:02.644097Z",
+            "describedAt": "2026-08-16T14:04:54Z",
+            "updatedBefore": "35분 전",
+            "options": [],
+            "trade": {
+              "freeShipping": false,
+              "shippingSpecs": {
+                "DEFAULT": {
+                  "fee": 5000
+                }
+              },
+              "inPerson": true
+            },
+            "trades": [
+              {
+                "title": "배송비",
+                "contents": [
+                  "일반 5,000원"
+                ]
+              },
+              {
+                "title": "직거래 희망 장소",
+                "contents": [
+                  "광주광역시 광산구 첨단2동"
+                ]
+              }
+            ],
+            "isCashable": false,
+            "isHidden": false
+          },
+          "bunpay": {
+            "enabled": true,
+            "shipping": true,
+            "inPerson": true
+          },
+          "reportBottomBanner": {
+            "text": "현금 거래는 개인 정보 노출 및 사기 위험이 있어, 안전결제로만 거래 가능해요.",
+            "subText": "안전한 중고거래 문화 함께하기",
+            "webUrl": "https://exhibition.bunjang.co.kr/viewer/fraudpatterns"
+          },
+          "features": [
+            {
+              "iconUrl": "https://static.bunjang.co.kr/products/product-detail/feature-icons/pay_v3.webp",
+              "title": "결제혜택",
+              "contents": [
+                {
+                  "text": "삼성카드 링크 10% 청구할인",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/samsungcardlink2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "토스페이 결제 시 번개포인트 0.5% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/tosspay2026?utm_source=bunjang&utm_medium=event&utm_campaign=20260101"
+                }
+              ],
+              "moreContents": [
+                {
+                  "text": "계좌 간편결제 시 번개포인트 1% 적립",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/simplepayment2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                },
+                {
+                  "text": "무이자할부/카드포인트 결제 혜택",
+                  "webUrl": "https://exhibition.bunjang.co.kr/viewer/pay2608?utm_source=bunjang&utm_medium=event&utm_campaign=260801"
+                }
+              ]
+            }
+          ],
+          "shop": {
+            "name": "미남예찬팬",
+            "imageUrl": "https://media.bunjang.co.kr/images/crop/1783863059_w{res}.jpg",
+            "reviewRating": 5.0,
+            "followerCount": 0,
+            "proshop": {
+              "isProshop": false,
+              "isRestrictedCandidate": false
+            },
+            "joinDate": "2017-10-22T11:27:06Z",
+            "followingAllowed": false,
+            "reviewCount": 4,
+            "salesCount": 12,
+            "isOfficialSeller": false
+          },
+          "shopProductCount": 3,
+          "shopProducts": [
+            {
+              "pid": 424533311,
+              "name": "[L] 에어팟 프로3 왼쪽 유닛",
+              "price": 85000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424533311_1_1786921624_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            },
+            {
+              "pid": 424533367,
+              "name": "[본체] 에어팟 프로3 본체",
+              "price": 90000,
+              "badges": [],
+              "firstImageUrl": "https://media.bunjang.co.kr/product/424533367_1_1786922666_w{res}.jpg",
+              "inspectionStatus": "NON_TARGET",
+              "care": false
+            }
+          ],
+          "reportUrl": "https://help.bunjang.co.kr/report/new/424508040?type=product",
+          "purchaseWebUrl": "https://pay2.bunjang.co.kr/payment/choose-option/424508040",
+          "productSpecs": [
+            {
+              "title": "상품상태",
+              "content": "새 상품 (미사용)"
+            },
+            {
+              "title": "수량",
+              "content": "1개"
+            }
+          ],
+          "enabledMultiOrder": false,
+          "showCareContent": false
+        }
+      }
     }
   ],
   "errors": []

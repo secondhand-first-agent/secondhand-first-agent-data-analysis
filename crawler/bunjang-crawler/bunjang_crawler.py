@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import re
 import sys
@@ -238,13 +239,6 @@ def make_image_urls(image_template: str | None, image_count: int) -> list[str]:
     ]
 
 
-def get_condition_label(product_specs: list[dict[str, Any]]) -> str | None:
-    for spec in product_specs:
-        if spec.get("title") == "상품상태":
-            return spec.get("content")
-    return None
-
-
 def iter_search_products(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
     cursor: str | None = None
     previous_cursor: str | None = None
@@ -305,58 +299,72 @@ def iter_search_products(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
         time.sleep(args.delay)
 
 
-def get_product_detail(product_id: int) -> dict[str, Any]:
+def sanitize_search_product(search_product: dict[str, Any]) -> dict[str, Any]:
+    """검색 원본에서 판매자 내부 ID와 요청별 추적값만 제거한다."""
+
+    sanitized = copy.deepcopy(search_product)
+    sanitized.pop("tracking", None)
+
+    shop = sanitized.get("shop")
+    if isinstance(shop, dict):
+        shop.pop("uid", None)
+
+    return sanitized
+
+
+def sanitize_detail_data(data: dict[str, Any]) -> dict[str, Any]:
+    """상세 원본 구조를 유지하면서 개인정보를 제거한다."""
+
+    sanitized = copy.deepcopy(data)
+    product = sanitized.get("product")
+    if isinstance(product, dict) and product.get("description") is not None:
+        product["description"] = mask_personal_info(
+            str(product["description"])
+        )
+    if isinstance(product, dict):
+        geo = product.get("geo")
+        if isinstance(geo, dict):
+            geo.pop("lat", None)
+            geo.pop("lon", None)
+
+    shop = sanitized.get("shop")
+    if isinstance(shop, dict):
+        shop.pop("uid", None)
+
+    return sanitized
+
+
+def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
+    product_id = int(search_product["pid"])
     response = get_json(DETAIL_URL.format(product_id=product_id))
-    data = response["data"]
-    product = data["product"]
-    shop = data.get("shop") or {}
-    metrics = product.get("metrics") or {}
-    trade = product.get("trade") or {}
-    brand = product.get("brand") or {}
-    category = product.get("category") or {}
-    product_specs = data.get("productSpecs") or []
+    detail = sanitize_detail_data(response["data"])
+    product = detail["product"]
+
+    raw_description = product.get("description")
+    description = (
+        str(raw_description)
+        if raw_description is not None
+        else None
+    )
 
     return {
         "platform": "BUNJANG",
         "platformProductId": str(product["pid"]),
         "url": f"{WEB_BASE_URL}/products/{product['pid']}",
-        "title": product.get("name"),
-        "description": mask_personal_info(product.get("description") or ""),
-        "price": product.get("price"),
-        "originalPrice": product.get("originPrice"),
-        "currency": "KRW",
-        "quantity": product.get("qty"),
-        "saleStatus": product.get("saleStatus"),
-        "condition": product.get("condition"),
-        "conditionLabel": get_condition_label(product_specs),
-        "brand": brand.get("name"),
-        "category": category.get("name"),
-        "categories": [
-            item.get("name")
-            for item in product.get("categories", [])
-            if item.get("name")
-        ],
-        "location": product.get("geoLabel"),
-        "freeShipping": trade.get("freeShipping", False),
-        "inPersonTrade": trade.get("inPerson", False),
-        "favoriteCount": metrics.get("favoriteCount", 0),
-        "viewCount": metrics.get("viewCount", 0),
-        "chatCount": metrics.get("buntalkCount", 0),
-        "commentCount": metrics.get("commentCount", 0),
-        "images": make_image_urls(
-            product.get("imageUrl"),
-            int(product.get("imageCount") or 0),
-        ),
-        "seller": {
-            "name": shop.get("name"),
-            "reviewRating": shop.get("reviewRating"),
-            "reviewCount": shop.get("reviewCount"),
-            "salesCount": shop.get("salesCount"),
-            "isProshop": (shop.get("proshop") or {}).get("isProshop", False),
+        "common": {
+            "title": product.get("name"),
+            "description": description,
+            "price": product.get("price"),
+            "currency": "KRW",
+            "images": make_image_urls(
+                product.get("imageUrl"),
+                int(product.get("imageCount") or 0),
+            ),
         },
-        "createdAt": product.get("describedAt"),
-        "updatedAt": product.get("updatedAt"),
-        "isSearchAd": False,
+        "bunjang": {
+            "search": sanitize_search_product(search_product),
+            "detail": detail,
+        },
     }
 
 
@@ -376,14 +384,18 @@ def crawl(args: argparse.Namespace) -> Path:
         print(f"[{len(products) + 1}/{args.limit}] {product_id} 상세 조회")
 
         try:
-            detail = get_product_detail(product_id)
+            detail = get_product_detail(candidate)
 
             # 검색 결과뿐 아니라 상세 제목도 다시 확인한다.
-            if not matches_query(str(detail.get("title") or ""), args.query):
-                print(f"[제외] 검색어와 다른 상품: {detail.get('title')}")
+            title = str(detail["common"].get("title") or "")
+            if not matches_query(title, args.query):
+                print(f"[제외] 검색어와 다른 상품: {title}")
                 continue
-            if detail.get("saleStatus") != "SELLING":
-                print(f"[제외] 판매 중 아님: {detail.get('title')}")
+            sale_status = detail["bunjang"]["detail"]["product"].get(
+                "saleStatus"
+            )
+            if sale_status != "SELLING":
+                print(f"[제외] 판매 중 아님: {title}")
                 continue
 
             products.append(detail)

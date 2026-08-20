@@ -22,8 +22,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Iterator
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.parse import parse_qs, urlencode, urlparse
+from urllib.request import HTTPRedirectHandler, Request, build_opener, urlopen
 
 
 WEB_BASE_URL = "https://fleamarket.naver.com"
@@ -406,7 +406,68 @@ def extract_detail_data(page_html: str) -> dict[str, Any]:
     raise ValueError("상세 페이지에서 상품 상태 데이터를 찾지 못했습니다.")
 
 
-def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
+# 지역 코드를 전체 주소로 바꾸는 네이버 지도 주소 조회 경로.
+# 상품 상세는 읍/면/동 이름만 주고 상위 행정구역(regionName1~3)은 비어 있어,
+# "중동"처럼 전국에 여러 개인 이름은 그대로는 위치를 특정할 수 없다.
+# 이 주소는 302 Location 헤더로 전체 주소를 돌려주므로 본문을 받지 않는다.
+REGION_ADDRESS_URL = "https://m.map.naver.com/search2/searchAddressById.naver?rcode={rcode}"
+
+# 같은 지역이 여러 상품에 반복 등장하므로 조회 결과를 재사용한다.
+_region_address_cache: dict[str, str | None] = {}
+
+
+class _KeepRedirect(HTTPRedirectHandler):
+    """리다이렉트를 따라가지 않고 Location 헤더만 보게 한다."""
+
+    def redirect_request(self, *args: Any, **kwargs: Any) -> None:
+        return None
+
+
+def resolve_region_address(rcode: str) -> str | None:
+    """지역 코드로 전체 주소를 조회한다. 실패하면 None."""
+    if not rcode:
+        return None
+    if rcode in _region_address_cache:
+        return _region_address_cache[rcode]
+
+    address: str | None = None
+    opener = build_opener(_KeepRedirect)
+    try:
+        opener.open(
+            Request(REGION_ADDRESS_URL.format(rcode=rcode), headers=HEADERS),
+            timeout=15,
+        )
+    except HTTPError as error:
+        if error.code in (301, 302, 303, 307, 308):
+            location = error.headers.get("Location") or ""
+            query = parse_qs(urlparse(location).query).get("query")
+            address = query[0] if query else None
+    except (URLError, OSError) as error:
+        print(f"[주의] 지역 코드 {rcode} 주소 조회 실패: {error}", file=sys.stderr)
+
+    _region_address_cache[rcode] = address
+    return address
+
+
+def attach_region_addresses(sale_product: dict[str, Any], delay: float) -> None:
+    """각 거래 지역에 전체 주소를 덧붙인다. 조회에 실패한 지역은 건드리지 않는다."""
+    for region in sale_product.get("saleProductRegions") or []:
+        if not isinstance(region, dict):
+            continue
+        rcode = region.get("rcode")
+        cached = rcode in _region_address_cache
+        address = resolve_region_address(str(rcode) if rcode else "")
+        if address:
+            # 원본에 없는 파생 필드임을 이름으로 구분한다.
+            region["resolvedFullAddress"] = address
+        if not cached and delay:
+            time.sleep(delay)
+
+
+def get_product_detail(
+    search_product: dict[str, Any],
+    delay: float = 0.0,
+) -> dict[str, Any]:
     product_id = str(search_product["marketProductId"])
     page_html = get_text(DETAIL_URL.format(product_id=product_id))
     detail = extract_detail_data(page_html)
@@ -423,6 +484,10 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
     )
     if raw_description is not None:
         sale_product["content"] = description
+
+    # 상세 응답의 regionName1~3이 비어 있어 동 이름만으로는 위치를 특정할 수 없다.
+    # 지역 코드로 전체 주소를 따로 조회해 붙인다.
+    attach_region_addresses(sale_product, delay)
 
     images = [
         str(image["url"])
@@ -465,7 +530,7 @@ def crawl(args: argparse.Namespace) -> Path:
         print(f"[{len(products) + 1}/{args.limit}] {product_id} 상세 조회")
 
         try:
-            detail = get_product_detail(candidate)
+            detail = get_product_detail(candidate, args.delay)
             detail_title = str(detail["common"].get("title") or "")
             if not matches_query(detail_title, args.query):
                 print(f"[제외] 검색어와 다른 상품: {detail_title}")

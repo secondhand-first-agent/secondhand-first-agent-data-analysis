@@ -10,3 +10,6 @@ venv/
 # Python cache files
 __pycache__/
 *.py[cod]
+
+# 통합 크롤러 실행 결과
+crawler/unified/output/

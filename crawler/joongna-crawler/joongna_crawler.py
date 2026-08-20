@@ -353,6 +353,77 @@ class JsonLdParser(HTMLParser):
             self.in_json_ld = False
 
 
+# 상세 페이지 내부 데이터에서 추가로 읽는 필드.
+# JSON-LD만으로는 알 수 없거나, JSON-LD 값이 실제와 다른 것들이다.
+EMBEDDED_FIELD_KEYS = ("condition", "tradeType", "deliveryInfos")
+
+
+def extract_json_value(text: str, key: str) -> Any | None:
+    """`"key": {...}` 또는 `"key": [...]` 형태의 값을 찾아 파싱한다.
+
+    문자열 리터럴 안의 괄호는 건너뛰므로 설명문에 괄호가 있어도 깨지지 않는다.
+    """
+    marker = f'"{key}":'
+    start = text.find(marker)
+    if start < 0:
+        return None
+
+    index = start + len(marker)
+    while index < len(text) and text[index].isspace():
+        index += 1
+    if index >= len(text) or text[index] not in "[{":
+        return None
+
+    opener = text[index]
+    closer = "]" if opener == "[" else "}"
+    depth = 0
+    in_string = False
+    escaped = False
+
+    for position in range(index, len(text)):
+        char = text[position]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == opener:
+            depth += 1
+        elif char == closer:
+            depth -= 1
+            if depth == 0:
+                try:
+                    return json.loads(text[index:position + 1])
+                except json.JSONDecodeError:
+                    return None
+    return None
+
+
+def extract_embedded_fields(page_html: str) -> dict[str, Any]:
+    """상세 페이지 내부 데이터에서 JSON-LD로 알 수 없는 필드를 읽는다.
+
+    - condition: JSON-LD의 offers.itemCondition은 미개봉 상품까지
+      UsedCondition으로 고정되어 있어 실제 상태를 반영하지 못한다.
+    - tradeType: 직거래/택배 여부를 플랫폼이 직접 명시한 값이다.
+    - deliveryInfos: 실제 배송비. 검색 결과의 parcelFee는 0/1 플래그이며
+      실제 배송비와 일치하지 않는다(parcelFee=0인데 배송비 4000원인 사례 확인).
+
+    원본에서 읽지 못한 키는 결과에 넣지 않는다.
+    """
+    text = page_html.replace('\\"', '"')
+    fields: dict[str, Any] = {}
+    for key in EMBEDDED_FIELD_KEYS:
+        value = extract_json_value(text, key)
+        if value is not None:
+            fields[key] = value
+    return fields
+
+
 def extract_detail(
     page_html: str,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -417,6 +488,14 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
     if raw_description is not None:
         json_ld_product["description"] = description
 
+    joongna_detail: dict[str, Any] = {
+        "jsonLdProduct": json_ld_product,
+        "jsonLdBreadcrumb": breadcrumbs,
+    }
+
+    # 원본에서 읽지 못한 키는 만들지 않는다.
+    joongna_detail.update(extract_embedded_fields(page_html))
+
     return {
         "platform": "JOONGNA",
         "platformProductId": str(product_id),
@@ -430,10 +509,7 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
         },
         "joongna": {
             "search": joongna_search,
-            "detail": {
-                "jsonLdProduct": json_ld_product,
-                "jsonLdBreadcrumb": breadcrumbs,
-            },
+            "detail": joongna_detail,
         },
     }
 

@@ -1,0 +1,668 @@
+{
+  "query": "에어팟 프로3",
+  "sort": "latest",
+  "requestedCount": 5,
+  "collectedAt": "2026-08-20T00:28:12.418956+00:00",
+  "count": 5,
+  "failedCount": 0,
+  "products": [
+    {
+      "platform": "ELEVENST",
+      "platformProductId": "9490419884",
+      "url": "https://www.11st.co.kr/products/9490419884",
+      "common": {
+        "title": "에어팟 프로 3세대 (USB-C) MFHP4KH/A 화이트 GD",
+        "description": null,
+        "price": 399900,
+        "currency": "KRW",
+        "images": [
+          "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9490419884/B.webp?974239512"
+        ]
+      },
+      "elevenst": {
+        "search": {
+          "adultProduct": "N",
+          "appOnly": false,
+          "benefitText": [
+            {
+              "type": "11pay",
+              "value": "20,165"
+            }
+          ],
+          "brandEngNm": "Apple",
+          "cmpScore": 0.75,
+          "dealPrdYN": "N",
+          "deliveryDescription": "무료",
+          "discountText": "11번가 최저가",
+          "finalPrc": 399900,
+          "hasViewTogether": false,
+          "id": "9490419884",
+          "imageUrl": "https://cdn.011st.com/11dims/resize/248/11src/product/9490419884/B.webp?974239512",
+          "is11stLowPrcPrd": true,
+          "is30DayCheaperMidPrcPrd": false,
+          "is30DayLowPrcPrd": false,
+          "isAppOnly": false,
+          "isAutoCollection": false,
+          "isCps": false,
+          "isDisplayDscPrc": false,
+          "isOfficial": false,
+          "isReviewEvent": false,
+          "isSoldOut": false,
+          "kvMaxPrdCount": 0,
+          "linkUrl": "https://www.11st.co.kr/products/9490419884?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+          "listType": "COMMON",
+          "logData": {
+            "area": "common",
+            "label": "product",
+            "dataBody": {
+              "content_type": "PRODUCT",
+              "content_no": "9490419884",
+              "link_url": "https://www.11st.co.kr/products/9490419884?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+              "position_l2": "1",
+              "ctlg_match_yn": "Y",
+              "display_order": "1",
+              "common_info": "winner",
+              "last_discount_price": "399900",
+              "org_discount_price": "-",
+              "collection_object": {
+                "name": "common"
+              },
+              "prd_type_vars": {
+                "lowest_price11_st": "Y",
+                "lowest_price30_d": "N"
+              },
+              "martplus_yn": "N"
+            }
+          },
+          "maxDiscountInfo": {
+            "productNo": 9490419884,
+            "masterProductNo": 0,
+            "sellPrice": 399900,
+            "directDiscountAmount": 0,
+            "sellerNo": 75565479,
+            "categoryNo": 1089217,
+            "finalPrice": 399900,
+            "productType": "COMMON",
+            "hasOptionPrice": false
+          },
+          "partyLogistic": "3P",
+          "satisfactionPerfectScore": "5",
+          "score": 0.09241286,
+          "selPrc": "399900",
+          "sellerLogBody": {
+            "content_type": "SELLER",
+            "content_no": "75565479",
+            "link_url": "https://www.11st.co.kr/products/9490419884?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+            "position_l2": "1",
+            "product_no": "9490419884"
+          },
+          "sellerNickName": "newgods",
+          "sellerUrl": "https://shop.11st.co.kr/stores/1072149?pdpPrdNo=9490419884",
+          "soldOut": false,
+          "title": "에어팟 프로 3세대 (USB-C) MFHP4KH/A 화이트 GD",
+          "unitTxt": "원"
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "name": "에어팟 프로 3세대 (USB-C) MFHP4KH/A 화이트 GD",
+            "image": "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9490419884/B.webp?974239512",
+            "brand": {
+              "name": "Apple",
+              "@type": "Brand"
+            },
+            "productID": "9490419884",
+            "category": "음향가전>이어폰>무선 이어폰",
+            "offers": {
+              "price": 399900,
+              "priceCurrency": "KRW",
+              "availability": "http://schema.org/InStock",
+              "url": "https://www.11st.co.kr/products/9490419884",
+              "priceSpecification": {
+                "price": 399900,
+                "priceCurrency": "KRW",
+                "availability": "https://schema.org/StrikethroughPrice",
+                "@type": "UnitPriceSpecification"
+              },
+              "@type": "Offer"
+            },
+            "aggregateRating": {
+              "ratingValue": 0.0,
+              "reviewCount": 0,
+              "@type": "AggregateRating"
+            },
+            "@context": "https://schema.org/",
+            "@type": "Product"
+          }
+        }
+      }
+    },
+    {
+      "platform": "ELEVENST",
+      "platformProductId": "9480391899",
+      "url": "https://www.11st.co.kr/products/9480391899",
+      "common": {
+        "title": "[애플] [정품/당일출고] 에어팟 프로 3세대 USB-C 지원 MFHP4KH/A",
+        "description": null,
+        "price": 368080,
+        "currency": "KRW",
+        "images": [
+          "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9480391899/B.webp?981814501"
+        ]
+      },
+      "elevenst": {
+        "search": {
+          "adultProduct": "N",
+          "appOnly": false,
+          "benefitText": [
+            {
+              "type": "11pay",
+              "value": "17,232"
+            }
+          ],
+          "brandEngNm": "Apple",
+          "cmpScore": 0.75,
+          "dealPrdYN": "N",
+          "deliveryDescription": "무료",
+          "discountPrice": "28,760",
+          "discountRate": "10%",
+          "discountText": "11번가 최저가",
+          "finalPrc": 341240,
+          "hasViewTogether": false,
+          "id": "9480391899",
+          "imageUrl": "https://cdn.011st.com/11dims/resize/248/11src/product/9480391899/B.webp?981814501",
+          "is11stLowPrcPrd": true,
+          "is30DayCheaperMidPrcPrd": true,
+          "is30DayLowPrcPrd": true,
+          "isAppOnly": false,
+          "isAutoCollection": false,
+          "isCps": false,
+          "isDisplayDscPrc": true,
+          "isOfficial": false,
+          "isReviewEvent": false,
+          "isSoldOut": false,
+          "kvMaxPrdCount": 0,
+          "linkUrl": "https://www.11st.co.kr/products/9480391899?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+          "listType": "COMMON",
+          "logData": {
+            "area": "common",
+            "label": "product",
+            "dataBody": {
+              "content_type": "PRODUCT",
+              "content_no": "9480391899",
+              "link_url": "https://www.11st.co.kr/products/9480391899?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+              "position_l2": "2",
+              "ctlg_match_yn": "Y",
+              "display_order": "2",
+              "common_info": "winner",
+              "last_discount_price": "341240",
+              "org_discount_price": "-",
+              "collection_object": {
+                "name": "common"
+              },
+              "prd_type_vars": {
+                "lowest_price11_st": "Y",
+                "lowest_price30_d": "N"
+              },
+              "martplus_yn": "N"
+            }
+          },
+          "maxDiscountInfo": {
+            "productNo": 9480391899,
+            "masterProductNo": 0,
+            "sellPrice": 383410,
+            "directDiscountAmount": 42170,
+            "sellerNo": 41361035,
+            "categoryNo": 1006365,
+            "finalPrice": 341240,
+            "productType": "COMMON",
+            "hasOptionPrice": false
+          },
+          "partyLogistic": "3P",
+          "prcDscRt": 7.0,
+          "satisfactionPerfectScore": "5",
+          "score": 0.92640185,
+          "selPrc": "383410",
+          "sellerBadgeType": "DEPT",
+          "sellerLogBody": {
+            "content_type": "SELLER",
+            "content_no": "41361035",
+            "link_url": "https://www.11st.co.kr/products/9480391899?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+            "position_l2": "2",
+            "product_no": "9480391899"
+          },
+          "sellerNickName": "신세계백화점",
+          "sellerUrl": "https://shop.11st.co.kr/stores/375794?pdpPrdNo=9480391899",
+          "soldOut": false,
+          "title": "[애플] [정품/당일출고] 에어팟 프로 3세대 USB-C 지원 MFHP4KH/A",
+          "unitTxt": "원"
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "name": "[애플] [정품/당일출고] 에어팟 프로 3세대 USB-C 지원 MFHP4KH/A",
+            "image": "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9480391899/B.webp?981814501",
+            "brand": {
+              "name": "Apple",
+              "@type": "Brand"
+            },
+            "productID": "9480391899",
+            "category": "음향가전>AV케이블>HDMI케이블",
+            "offers": {
+              "price": 368080,
+              "priceCurrency": "KRW",
+              "availability": "http://schema.org/InStock",
+              "url": "https://www.11st.co.kr/products/9480391899",
+              "priceSpecification": {
+                "price": 383410,
+                "priceCurrency": "KRW",
+                "availability": "https://schema.org/StrikethroughPrice",
+                "@type": "UnitPriceSpecification"
+              },
+              "@type": "Offer"
+            },
+            "aggregateRating": {
+              "ratingValue": 0.0,
+              "reviewCount": 0,
+              "@type": "AggregateRating"
+            },
+            "@context": "https://schema.org/",
+            "@type": "Product"
+          }
+        }
+      }
+    },
+    {
+      "platform": "ELEVENST",
+      "platformProductId": "9473781625",
+      "url": "https://www.11st.co.kr/products/9473781625",
+      "common": {
+        "title": "에어팟 프로 3세대",
+        "description": null,
+        "price": 677400,
+        "currency": "KRW",
+        "images": [
+          "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9473781625/B.webp?710538958"
+        ]
+      },
+      "elevenst": {
+        "search": {
+          "adultProduct": "N",
+          "appOnly": false,
+          "benefitText": [
+            {
+              "type": "11pay",
+              "value": "20,170"
+            }
+          ],
+          "brandEngNm": "Apple",
+          "cmpScore": 0.1875,
+          "dealPrdYN": "N",
+          "deliveryDescription": "무료",
+          "discountRate": "7%",
+          "discountText": "11번가 최저가",
+          "finalPrc": 623210,
+          "hasViewTogether": false,
+          "id": "9473781625",
+          "imageUrl": "https://cdn.011st.com/11dims/resize/248/11src/product/9473781625/B.webp?710538958",
+          "is11stLowPrcPrd": true,
+          "is30DayCheaperMidPrcPrd": false,
+          "is30DayLowPrcPrd": false,
+          "isAppOnly": false,
+          "isAutoCollection": false,
+          "isCps": false,
+          "isDisplayDscPrc": false,
+          "isOfficial": false,
+          "isReviewEvent": false,
+          "isSoldOut": false,
+          "kvMaxPrdCount": 0,
+          "linkUrl": "https://www.11st.co.kr/products/9473781625?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+          "listType": "COMMON",
+          "listingPrdTypeText": "해외",
+          "logData": {
+            "area": "common",
+            "label": "product",
+            "dataBody": {
+              "content_type": "PRODUCT",
+              "content_no": "9473781625",
+              "link_url": "https://www.11st.co.kr/products/9473781625?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+              "position_l2": "3",
+              "ctlg_match_yn": "Y",
+              "display_order": "3",
+              "common_info": "winner",
+              "last_discount_price": "623210",
+              "org_discount_price": "-",
+              "collection_object": {
+                "name": "common"
+              },
+              "prd_type_vars": {
+                "lowest_price11_st": "Y",
+                "lowest_price30_d": "N"
+              },
+              "martplus_yn": "N"
+            }
+          },
+          "maxDiscountInfo": {
+            "productNo": 9473781625,
+            "masterProductNo": 0,
+            "sellPrice": 677400,
+            "directDiscountAmount": 54190,
+            "sellerNo": 68493180,
+            "categoryNo": 1148779,
+            "finalPrice": 623210,
+            "productType": "COMMON",
+            "hasOptionPrice": false
+          },
+          "partyLogistic": "3P",
+          "satisfactionPerfectScore": "5",
+          "score": 0.36267966,
+          "selPrc": "677400",
+          "sellerLogBody": {
+            "content_type": "SELLER",
+            "content_no": "68493180",
+            "link_url": "https://www.11st.co.kr/products/9473781625?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+            "position_l2": "3",
+            "product_no": "9473781625"
+          },
+          "sellerNickName": "angra02",
+          "sellerUrl": "https://shop.11st.co.kr/stores/687861?pdpPrdNo=9473781625",
+          "soldOut": false,
+          "title": "에어팟 프로 3세대",
+          "unitTxt": "원"
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "name": "에어팟 프로 3세대",
+            "image": "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9473781625/B.webp?710538958",
+            "brand": {
+              "name": "Apple",
+              "@type": "Brand"
+            },
+            "productID": "9473781625",
+            "category": "해외직구>스마트기기>스마트기기 기타",
+            "offers": {
+              "price": 677400,
+              "priceCurrency": "KRW",
+              "availability": "http://schema.org/InStock",
+              "url": "https://www.11st.co.kr/products/9473781625",
+              "priceSpecification": {
+                "price": 677400,
+                "priceCurrency": "KRW",
+                "availability": "https://schema.org/StrikethroughPrice",
+                "@type": "UnitPriceSpecification"
+              },
+              "@type": "Offer"
+            },
+            "aggregateRating": {
+              "ratingValue": 0.0,
+              "reviewCount": 0,
+              "@type": "AggregateRating"
+            },
+            "@context": "https://schema.org/",
+            "@type": "Product"
+          }
+        }
+      }
+    },
+    {
+      "platform": "ELEVENST",
+      "platformProductId": "9471430820",
+      "url": "https://www.11st.co.kr/products/9471430820",
+      "common": {
+        "title": "애플 AirPods Pro 3 국내 정식발매 노이즈캔슬링 이어폰 [국내배송",
+        "description": null,
+        "price": 556540,
+        "currency": "KRW",
+        "images": [
+          "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9471430820/B.webp?355839206"
+        ]
+      },
+      "elevenst": {
+        "search": {
+          "adultProduct": "N",
+          "appOnly": false,
+          "benefitText": [
+            {
+              "type": "11pay",
+              "value": "20,170"
+            }
+          ],
+          "brandEngNm": "Apple",
+          "cmpScore": 0.0,
+          "dealPrdYN": "N",
+          "deliveryDescription": "무료",
+          "discountRate": "5%",
+          "discountText": "11번가 최저가",
+          "finalPrc": 550800,
+          "hasViewTogether": false,
+          "id": "9471430820",
+          "imageUrl": "https://cdn.011st.com/11dims/resize/248/11src/product/9471430820/B.webp?355839206",
+          "is11stLowPrcPrd": true,
+          "is30DayCheaperMidPrcPrd": false,
+          "is30DayLowPrcPrd": false,
+          "isAppOnly": false,
+          "isAutoCollection": false,
+          "isCps": false,
+          "isDisplayDscPrc": false,
+          "isOfficial": false,
+          "isReviewEvent": false,
+          "isSoldOut": false,
+          "kvMaxPrdCount": 0,
+          "linkUrl": "https://www.11st.co.kr/products/9471430820?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+          "listType": "COMMON",
+          "logData": {
+            "area": "common",
+            "label": "product",
+            "dataBody": {
+              "content_type": "PRODUCT",
+              "content_no": "9471430820",
+              "link_url": "https://www.11st.co.kr/products/9471430820?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+              "position_l2": "4",
+              "ctlg_match_yn": "Y",
+              "display_order": "4",
+              "common_info": "winner",
+              "last_discount_price": "550800",
+              "org_discount_price": "-",
+              "collection_object": {
+                "name": "common"
+              },
+              "prd_type_vars": {
+                "lowest_price11_st": "Y",
+                "lowest_price30_d": "N"
+              },
+              "martplus_yn": "N"
+            }
+          },
+          "maxDiscountInfo": {
+            "productNo": 9471430820,
+            "masterProductNo": 0,
+            "sellPrice": 573760,
+            "directDiscountAmount": 22960,
+            "sellerNo": 41407634,
+            "categoryNo": 1011656,
+            "finalPrice": 550800,
+            "productType": "COMMON",
+            "hasOptionPrice": false
+          },
+          "partyLogistic": "3P",
+          "satisfactionPerfectScore": "5",
+          "score": 0.17609233,
+          "selPrc": "573760",
+          "sellerLogBody": {
+            "content_type": "SELLER",
+            "content_no": "41407634",
+            "link_url": "https://www.11st.co.kr/products/9471430820?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+            "position_l2": "4",
+            "product_no": "9471430820"
+          },
+          "sellerNickName": "신세계몰",
+          "sellerUrl": "https://shop.11st.co.kr/stores/375062?pdpPrdNo=9471430820",
+          "soldOut": false,
+          "title": "애플 AirPods Pro 3 국내 정식발매 노이즈캔슬링 이어폰 [국내배송]",
+          "unitTxt": "원"
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "name": "애플 AirPods Pro 3 국내 정식발매 노이즈캔슬링 이어폰 [국내배송",
+            "image": "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9471430820/B.webp?355839206",
+            "brand": {
+              "name": "기타",
+              "@type": "Brand"
+            },
+            "productID": "9471430820",
+            "category": "등산/아웃도어>등산잡화>잡화 기타",
+            "offers": {
+              "price": 556540,
+              "priceCurrency": "KRW",
+              "availability": "http://schema.org/InStock",
+              "url": "https://www.11st.co.kr/products/9471430820",
+              "priceSpecification": {
+                "price": 573760,
+                "priceCurrency": "KRW",
+                "availability": "https://schema.org/StrikethroughPrice",
+                "@type": "UnitPriceSpecification"
+              },
+              "@type": "Offer"
+            },
+            "aggregateRating": {
+              "ratingValue": 0.0,
+              "reviewCount": 0,
+              "@type": "AggregateRating"
+            },
+            "@context": "https://schema.org/",
+            "@type": "Product"
+          }
+        }
+      }
+    },
+    {
+      "platform": "ELEVENST",
+      "platformProductId": "9429773147",
+      "url": "https://www.11st.co.kr/products/9429773147",
+      "common": {
+        "title": "애플 에어팟 프로 3세대 (국내 정식 발매 제품)",
+        "description": null,
+        "price": 472000,
+        "currency": "KRW",
+        "images": [
+          "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9429773147/B.webp?993885528"
+        ]
+      },
+      "elevenst": {
+        "search": {
+          "adultProduct": "N",
+          "appOnly": false,
+          "benefitText": [
+            {
+              "type": "11pay",
+              "value": "20,170"
+            }
+          ],
+          "brandEngNm": "Apple",
+          "cmpScore": 0.75,
+          "dealPrdYN": "N",
+          "deliveryDescription": "무료",
+          "discountText": "11번가 최저가",
+          "finalPrc": 472000,
+          "hasViewTogether": false,
+          "id": "9429773147",
+          "imageUrl": "https://cdn.011st.com/11dims/resize/248/11src/product/9429773147/B.webp?993885528",
+          "is11stLowPrcPrd": true,
+          "is30DayCheaperMidPrcPrd": false,
+          "is30DayLowPrcPrd": false,
+          "isAppOnly": false,
+          "isAutoCollection": false,
+          "isCps": false,
+          "isDisplayDscPrc": false,
+          "isOfficial": false,
+          "isReviewEvent": false,
+          "isSoldOut": false,
+          "kvMaxPrdCount": 0,
+          "linkUrl": "https://www.11st.co.kr/products/9429773147?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+          "listType": "COMMON",
+          "logData": {
+            "area": "common",
+            "label": "product",
+            "dataBody": {
+              "content_type": "PRODUCT",
+              "content_no": "9429773147",
+              "link_url": "https://www.11st.co.kr/products/9429773147?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+              "position_l2": "5",
+              "ctlg_match_yn": "Y",
+              "display_order": "5",
+              "common_info": "winner",
+              "last_discount_price": "472000",
+              "org_discount_price": "-",
+              "collection_object": {
+                "name": "common"
+              },
+              "prd_type_vars": {
+                "lowest_price11_st": "Y",
+                "lowest_price30_d": "N"
+              },
+              "martplus_yn": "N"
+            }
+          },
+          "maxDiscountInfo": {
+            "productNo": 9429773147,
+            "masterProductNo": 0,
+            "sellPrice": 472000,
+            "directDiscountAmount": 0,
+            "sellerNo": 76127736,
+            "categoryNo": 1089217,
+            "finalPrice": 472000,
+            "productType": "COMMON",
+            "hasOptionPrice": false
+          },
+          "partyLogistic": "3P",
+          "satisfactionPerfectScore": "5",
+          "score": 0.92540735,
+          "selPrc": "472000",
+          "sellerLogBody": {
+            "content_type": "SELLER",
+            "content_no": "76127736",
+            "link_url": "https://www.11st.co.kr/products/9429773147?&trTypeCd=MAS101&trCtgrNo=585021&checkCtlgPrd=true",
+            "position_l2": "5",
+            "product_no": "9429773147"
+          },
+          "sellerNickName": "나들이가방샵",
+          "sellerUrl": "https://shop.11st.co.kr/stores/1164503?pdpPrdNo=9429773147",
+          "soldOut": false,
+          "title": "애플 에어팟 프로 3세대 (국내 정식 발매 제품)",
+          "unitTxt": "원"
+        },
+        "detail": {
+          "jsonLdProduct": {
+            "name": "애플 에어팟 프로 3세대 (국내 정식 발매 제품)",
+            "image": "https://cdn.011st.com/11dims/resize/792x792/quality/75/11src/product/9429773147/B.webp?993885528",
+            "brand": {
+              "name": "Unknown",
+              "@type": "Brand"
+            },
+            "productID": "9429773147",
+            "category": "음향가전>이어폰>무선 이어폰",
+            "offers": {
+              "price": 472000,
+              "priceCurrency": "KRW",
+              "availability": "http://schema.org/InStock",
+              "url": "https://www.11st.co.kr/products/9429773147",
+              "priceSpecification": {
+                "price": 472000,
+                "priceCurrency": "KRW",
+                "availability": "https://schema.org/StrikethroughPrice",
+                "@type": "UnitPriceSpecification"
+              },
+              "@type": "Offer"
+            },
+            "aggregateRating": {
+              "ratingValue": 0.0,
+              "reviewCount": 0,
+              "@type": "AggregateRating"
+            },
+            "@context": "https://schema.org/",
+            "@type": "Product"
+          }
+        }
+      }
+    }
+  ],
+  "errors": []
+}

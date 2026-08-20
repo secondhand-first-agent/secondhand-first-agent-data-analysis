@@ -7,6 +7,10 @@ venv/
 **/.venv/
 **/venv/
 
+# Local API credentials
+.env
+**/.env
+
 # Python cache files
 __pycache__/
 *.py[cod]

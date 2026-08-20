@@ -154,8 +154,11 @@ python3 validate_unified_schema.py output/unified_*.json
 
 - **`편의점 픽업만 가능`** — 편의점 외 배송 수단이 없는 상품 수.
   픽업이 어려운 사용자에게는 사실상 구매 불가다. 경고로도 잡힌다.
-- **`location.precision`** — `DONG_ONLY`나 `NONE`이 많으면 거리 점수를
-  그대로 쓰면 안 된다. 플랫폼 간 형평성이 깨진다.
+- **`location.precision`** — `DONG_ONLY`가 많으면 거리 점수를 그대로 쓰면 안 된다.
+  플랫폼 간 형평성이 깨진다. `NONE`은 다르다. 택배 전용 상품이라 위치가
+  애초에 없는 것이므로 정상이다. 11번가는 새상품이라 항상 `NONE`이다.
+  거리 계산은 `precision`으로 분기한다. 자세한 계약은
+  [스키마 정의의 거리 계산 연동](../../docs/통합_스키마_정의.md)을 참고한다.
 
 ## 7. 문제가 생기면
 
@@ -166,4 +169,5 @@ python3 validate_unified_schema.py output/unified_*.json
 | 11번가에 렌털이 섞임 | `unitTxt`·상세 뱃지 판별을 통과한 것이다. 원본을 `--keep-raw`로 확인한다 |
 | `delivery_fee.min_fee` 불일치 오류 | `options`와 대표 금액 계산이 어긋난 것이다. 변환 로직 버그다 |
 | `location.precision`이 `DONG_ONLY` | N플리마켓 주소 조회가 실패했다. 네이버 지도 경로 변경 가능성 |
+| 11번가만 `location.precision`이 전부 `NONE` | 정상이다. 새상품은 택배만 가능해 거래 지역이 없다 |
 | 검증에서 `UNKNOWN` 배송 수단 | 새로운 원본 코드가 나온 것이다. 매핑 테이블에 추가가 필요하다 |

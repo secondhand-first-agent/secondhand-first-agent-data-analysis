@@ -27,6 +27,7 @@
 
 import argparse
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -75,6 +76,14 @@ JOONGNA_CONDITION_MAP = {
     0: "NEW",
     1: "UNSPECIFIED",
     2: "USED",
+}
+
+
+# 11번가는 검색 API에 상태 필드가 없고 상세 페이지의 "상품상태" 행에만 있다.
+# 실측 35건에서 나온 값은 이 두 가지뿐이다. 리퍼 판매 상품도 "새상품"으로 나온다.
+ELEVENST_CONDITION_MAP = {
+    "새상품": "NEW",
+    "중고상품": "USED",
 }
 
 
@@ -427,6 +436,85 @@ def location_naver_fleamarket(sale_product):
 # ---------------------------------------------------------------------
 # 플랫폼별 변환기
 # ---------------------------------------------------------------------
+def normalize_condition_elevenst(detail):
+    """11번가 상세 페이지의 "상품상태" 행을 통합 상태값으로 바꾼다.
+
+    행 자체가 없으면 UNKNOWN이다. 새상품 마켓이라고 NEW로 단정하면
+    실제로 섞여 있는 중고 상품을 새것으로 잘못 읽는다.
+    """
+    return ELEVENST_CONDITION_MAP.get(detail.get("productStatus"), "UNKNOWN")
+
+
+ELEVENST_FEE_RE = re.compile(r"([\d,]+)\s*원")
+
+
+def delivery_fee_elevenst(search):
+    """검색 결과의 deliveryDescription을 배송비로 해석한다.
+
+    실측 값은 "무료" 또는 "2,500원" 형태다. 11번가는 통신판매 중개라
+    편의점 픽업이 없고 배송 수단은 일반 택배 하나뿐이다.
+    """
+    raw = search.get("deliveryDescription")
+
+    if raw == "무료":
+        return delivery_free(raw)
+
+    if isinstance(raw, str):
+        matched = ELEVENST_FEE_RE.search(raw)
+        if matched:
+            fee = int(matched.group(1).replace(",", ""))
+            option = {
+                "method": "STANDARD",
+                "carrier": None,
+                "requires_pickup_point": False,
+                "fee": fee,
+                "remote_fee": None,
+                "raw_code": raw,
+            }
+            # 금액이 따로 표시되면 구매자가 낸다.
+            return delivery_result("BUYER", [option], raw)
+
+    # 해석하지 못한 값을 0원이나 무료로 채우지 않는다.
+    return delivery_unavailable()
+
+
+def location_elevenst():
+    """11번가는 직거래가 없어 위치 정보 자체가 의미 없다.
+
+    판매자 주소는 사업자 정보일 뿐 만나는 장소가 아니므로 비워 둔다.
+    거리 점수 계산에서 제외되어야 한다.
+    """
+    return build_location([], "NONE")
+
+
+def transform_elevenst(raw_file, collected_at_fallback):
+    out = []
+    for item in raw_file.get("products", []):
+        common = item.get("common", {})
+        elevenst = item.get("elevenst", {})
+        search = elevenst.get("search", {})
+        detail = elevenst.get("detail", {})
+
+        out.append({
+            "platform": item.get("platform"),
+            "platform_product_id": str(item.get("platformProductId")),
+            "url": item.get("url"),
+            "title": common.get("title"),
+            "price": common.get("price"),
+            "currency": common.get("currency"),
+            "description": common.get("description"),
+            "images": common.get("images", []),
+            "condition_level": normalize_condition_elevenst(detail),
+            "condition_raw": condition_raw_text(detail.get("productStatus")),
+            # 오픈마켓이라 택배만 가능하다. 직거래 선택지가 없다.
+            "trade_method": ["PARCEL"],
+            "delivery_fee": delivery_fee_elevenst(search),
+            "location": location_elevenst(),
+            "collected_at": raw_file.get("collectedAt", collected_at_fallback),
+        })
+    return out
+
+
 def transform_bunjang(raw_file, collected_at_fallback):
     out = []
     for item in raw_file.get("products", []):
@@ -524,11 +612,14 @@ def parse_args():
     parser.add_argument(
         "--naver-fleamarket", type=Path, required=True, help="N플리마켓 크롤링 결과 JSON"
     )
+    parser.add_argument(
+        "--elevenst", type=Path, help="11번가 크롤링 결과 JSON (선택)"
+    )
     parser.add_argument("--output", type=Path, required=True, help="통합 결과 JSON 경로")
     return parser.parse_args()
 
 
-def build_unified(bunjang_raw, joongna_raw, naver_raw):
+def build_unified(bunjang_raw, joongna_raw, naver_raw, elevenst_raw=None):
     """원본 3종을 읽어 통합 결과 객체를 만든다."""
     now_fallback = datetime.now(timezone.utc).isoformat()
 
@@ -536,13 +627,15 @@ def build_unified(bunjang_raw, joongna_raw, naver_raw):
     unified += transform_bunjang(bunjang_raw, now_fallback)
     unified += transform_joongna(joongna_raw, now_fallback)
     unified += transform_naver_fleamarket(naver_raw, now_fallback)
+    if elevenst_raw is not None:
+        unified += transform_elevenst(elevenst_raw, now_fallback)
 
     # 검색어는 세 파일 모두 동일해야 하지만, 비어 있는 파일이 있을 수 있어
     # 값이 있는 첫 번째 것을 쓴다.
-    query = next(
-        (raw.get("query") for raw in (bunjang_raw, joongna_raw, naver_raw) if raw.get("query")),
-        None,
-    )
+    sources = [bunjang_raw, joongna_raw, naver_raw]
+    if elevenst_raw is not None:
+        sources.append(elevenst_raw)
+    query = next((raw.get("query") for raw in sources if raw.get("query")), None)
 
     return {
         "query": query,
@@ -551,6 +644,11 @@ def build_unified(bunjang_raw, joongna_raw, naver_raw):
             "BUNJANG": len(bunjang_raw.get("products", [])),
             "JOONGNA": len(joongna_raw.get("products", [])),
             "NAVER_FLEAMARKET": len(naver_raw.get("products", [])),
+            **(
+                {"ELEVENST": len(elevenst_raw.get("products", []))}
+                if elevenst_raw is not None
+                else {}
+            ),
         },
         "count": len(unified),
         "items": unified,
@@ -564,6 +662,7 @@ def main():
         load(args.bunjang),
         load(args.joongna),
         load(args.naver_fleamarket),
+        load(args.elevenst) if args.elevenst else None,
     )
 
     args.output.parent.mkdir(parents=True, exist_ok=True)

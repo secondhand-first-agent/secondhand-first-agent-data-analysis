@@ -83,6 +83,23 @@ NON_PRODUCT_TERMS = (
     "대여",
 )
 
+# 11번가 검색 API는 상품 상태를 주지 않지만 상세 페이지에는 항상 들어 있다.
+# "상품상태" 행의 값은 "새상품" 또는 "중고상품"이다.
+PRODUCT_STATUS_RE = re.compile(
+    r"<th[^>]*>\s*상품상태\s*</th>\s*<td[^>]*>(.*?)</td>", re.S
+)
+# 중고·렌털 상품은 제목 앞에 뱃지가 붙는다. 일반 새상품에는 없다.
+CATEGORY_BADGE_RE = re.compile(r'<em class="category">(.*?)</em>', re.S)
+CATEGORY_PATH_RE = re.compile(r'<meta name="keyword" content="(.*?)"')
+TAG_RE = re.compile(r"<[^>]+>")
+
+# 렌털은 상품상태가 "새상품"으로 나오지만 소유권을 사는 거래가 아니다.
+# 총 지불액 비교에 섞이면 월 구독료가 판매가처럼 읽히므로 따로 걸러낸다.
+RENTAL_BADGE = "렌털"
+RENTAL_CATEGORY_PREFIX = "렌털/구독"
+RENTAL_UNIT_SUFFIX = "/월"
+
+
 TEXT_ALIASES = (
     (r"airpods", "에어팟"),
     (r"iphone", "아이폰"),
@@ -126,6 +143,11 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=1.0,
         help="요청 사이 대기 시간(초) (기본값: 1.0)",
+    )
+    parser.add_argument(
+        "--include-rental",
+        action="store_true",
+        help="렌털·구독 상품도 함께 수집한다 (기본값: 제외)",
     )
     parser.add_argument(
         "--output",
@@ -339,6 +361,50 @@ class JsonLdParser(HTMLParser):
             self.in_json_ld = False
 
 
+def clean_html_text(value: str) -> str:
+    return html.unescape(TAG_RE.sub("", value)).strip()
+
+
+def extract_page_fields(page_html: str) -> dict[str, str]:
+    """상세 페이지에서 JSON-LD에 없는 값들을 읽는다.
+
+    찾지 못한 값은 키 자체를 넣지 않는다. 빈 문자열로 채우면
+    "수집했는데 값이 없음"과 "수집 못 함"을 구분할 수 없다.
+    """
+    fields: dict[str, str] = {}
+
+    status = PRODUCT_STATUS_RE.search(page_html)
+    if status:
+        fields["productStatus"] = clean_html_text(status.group(1))
+
+    badge = CATEGORY_BADGE_RE.search(page_html)
+    if badge:
+        fields["categoryBadge"] = clean_html_text(badge.group(1))
+
+    path = CATEGORY_PATH_RE.search(page_html)
+    if path:
+        fields["categoryPath"] = html.unescape(path.group(1)).strip()
+
+    return fields
+
+
+def is_rental_search_product(search_product: dict[str, Any]) -> bool:
+    """검색 결과만으로 렌털을 판별한다.
+
+    렌털은 가격 단위가 "원/월", "원~/월"이다. 상세 조회 전에 걸러
+    불필요한 요청을 줄인다.
+    """
+    unit = search_product.get("unitTxt")
+    return isinstance(unit, str) and unit.endswith(RENTAL_UNIT_SUFFIX)
+
+
+def is_rental_detail(fields: dict[str, str]) -> bool:
+    """상세 페이지 값으로 렌털을 판별한다. 검색 단계에서 놓친 것을 잡는다."""
+    if fields.get("categoryBadge") == RENTAL_BADGE:
+        return True
+    return fields.get("categoryPath", "").startswith(RENTAL_CATEGORY_PREFIX)
+
+
 def extract_detail(page_html: str) -> dict[str, Any]:
     parser = JsonLdParser()
     parser.feed(page_html)
@@ -360,7 +426,9 @@ def extract_detail(page_html: str) -> dict[str, Any]:
 def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
     product_id = str(search_product["id"])
     url = DETAIL_URL.format(product_id=product_id)
-    product = extract_detail(get_text(url))
+    page_html = get_text(url)
+    product = extract_detail(page_html)
+    page_fields = extract_page_fields(page_html)
 
     offers = product.get("offers") or {}
     images = product.get("image") or []
@@ -382,6 +450,7 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
             "search": search_product,
             "detail": {
                 "jsonLdProduct": product,
+                **page_fields,
             },
         },
     }
@@ -398,8 +467,17 @@ def crawl(args: argparse.Namespace) -> Path:
     products: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
 
+    rental_skipped = 0
+
     for candidate in iter_search_products(args):
         product_id = str(candidate["id"])
+
+        # 1단계 — 검색 결과의 가격 단위로 거른다. 상세 요청을 아낀다.
+        if not args.include_rental and is_rental_search_product(candidate):
+            rental_skipped += 1
+            print(f"[제외] 렌털 상품: {product_id} {candidate.get('title', '')[:40]}")
+            continue
+
         print(f"[{len(products) + 1}/{args.limit}] {product_id} 상세 조회")
 
         try:
@@ -408,6 +486,15 @@ def crawl(args: argparse.Namespace) -> Path:
             if not matches_query(detail_title, args.query):
                 print(f"[제외] 검색어와 다른 상품: {detail_title}")
                 continue
+
+            # 2단계 — 상세 페이지 뱃지·카테고리로 한 번 더 거른다.
+            if not args.include_rental and is_rental_detail(
+                detail["elevenst"]["detail"]
+            ):
+                rental_skipped += 1
+                print(f"[제외] 렌털 상품(상세 확인): {detail_title[:40]}")
+                continue
+
             products.append(detail)
         except Exception as error:  # 한 상품 실패로 전체 수집을 중단하지 않는다.
             print(f"[상세 조회 실패] {product_id}: {error}", file=sys.stderr)
@@ -428,6 +515,7 @@ def crawl(args: argparse.Namespace) -> Path:
         "collectedAt": datetime.now(timezone.utc).isoformat(),
         "count": len(products),
         "failedCount": len(errors),
+        "rentalSkippedCount": rental_skipped,
         "products": products,
         "errors": errors,
     }
@@ -437,6 +525,8 @@ def crawl(args: argparse.Namespace) -> Path:
         json.dump(result, file, ensure_ascii=False, indent=2)
 
     print(f"[완료] {len(products)}개 수집")
+    if rental_skipped:
+        print(f"[렌털 제외] {rental_skipped}개")
     print(f"[저장 위치] {output_path.resolve()}")
 
     if len(products) < args.limit:

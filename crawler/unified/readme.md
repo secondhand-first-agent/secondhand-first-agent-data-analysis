@@ -136,11 +136,29 @@ python3 validate_unified_schema.py output/unified_*.json
 
 `items[]`의 각 필드는 [`docs/통합_스키마_정의.md`](../../docs/통합_스키마_정의.md)에 정리돼 있다.
 
+### 11번가에만 생기는 필드
+
+`price_range`는 **옵션에 따라 가격이 달라질 때만** 값이 있다.
+
+```jsonc
+{
+  "price": 26420,
+  "price_range": { "min": 26420, "max": 30950, "option_count": 4 }
+}
+```
+
+11번가 검색 결과의 가격은 옵션 중 가장 싼 값이다. 그대로 쓰면 새상품이 실제보다
+싸 보인다. 옵션이 있어도 전부 같은 가격이면 `null`이므로, **값이 있다는 것만으로
+"가격이 달라진다"를 뜻한다.** 중고 3사는 항상 `null`이다.
+
+`price`는 언제나 `price_range.min`과 같다. 검증기가 이 관계를 강제한다.
+
 ## 6. 검증 리포트 읽는 법
 
 ```text
 [BUNJANG] 3건
   condition_level: {'LIGHTLY_USED': 2, 'NEW': 1}
+  옵션따라 가격변동: 1/3건 (최대 편차 4,530원)
   trade_method 조합: {('MEET', 'PARCEL'): 2, ('MEET',): 1}
   delivery_fee.status: {'AVAILABLE': 3}
   delivery_fee.payer: {'SELLER': 1, 'BUYER': 2}
@@ -154,6 +172,8 @@ python3 validate_unified_schema.py output/unified_*.json
 
 - **`편의점 픽업만 가능`** — 편의점 외 배송 수단이 없는 상품 수.
   픽업이 어려운 사용자에게는 사실상 구매 불가다. 경고로도 잡힌다.
+- **`옵션따라 가격변동`** — 11번가에서만 나온다. 표시가가 옵션 최저가라는 뜻이다.
+  이 상품들은 총액을 단일 값으로 비교하면 안 된다.
 - **`location.precision`** — `DONG_ONLY`가 많으면 거리 점수를 그대로 쓰면 안 된다.
   플랫폼 간 형평성이 깨진다. `NONE`은 다르다. 택배 전용 상품이라 위치가
   애초에 없는 것이므로 정상이다. 11번가는 새상품이라 항상 `NONE`이다.

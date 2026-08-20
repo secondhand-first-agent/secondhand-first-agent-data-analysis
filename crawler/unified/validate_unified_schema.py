@@ -82,12 +82,15 @@ def validate_item(item, errors, warnings):
                         f"[{item_id}] price_range: max가 min보다 크지 않음 "
                         f"({low} ~ {high}). 가격이 변하지 않으면 null이어야 한다"
                     )
-                # 표시가는 옵션 최저가와 같아야 한다. 어긋나면 어느 쪽이
-                # 진짜 하한인지 알 수 없어 총 지불액 비교가 무너진다.
-                if isinstance(price, int) and price != low:
+                # 표시가는 범위 안에 있어야 한다.
+                #
+                # 최저가와 같을 필요는 없다. 11번가 옵션은 추가금이 음수일 수
+                # 있어(예: 작은 사이즈 -4,000원) 기준 옵션보다 싼 선택지가
+                # 존재한다. 표시가는 "최저가"가 아니라 "기준 옵션 가격"이다.
+                if isinstance(price, int) and not (low <= price <= high):
                     errors.append(
-                        f"[{item_id}] price_range: price({price})와 "
-                        f"min({low})이 다름"
+                        f"[{item_id}] price_range: price({price})가 "
+                        f"범위({low}~{high}) 밖에 있음"
                     )
 
     # currency

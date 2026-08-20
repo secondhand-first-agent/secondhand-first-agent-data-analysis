@@ -36,10 +36,23 @@ PDP_DETAIL_URL = (
     "https://www.11st.co.kr/products/v1/pc/products/{product_id}/detail"
 )
 
+# 11번가 검색 API의 정렬 코드.
+#
+# 실측 결과 실제로 동작하는 것은 "N"(최신순) 하나뿐이다. 그 외 값은 인식되지
+# 않아 11번가 기본 정렬로 폴백하는데, 그 기본이 곧 랭킹(인기)순이다.
+# LP·HP·CP 등 열 가지를 넣어 봤지만 전부 같은 결과가 나왔다.
 SORT_VALUES = {
+    "popular": "NP",   # 11번가 랭킹순. 미인식 코드가 폴백하는 기본 정렬이다
     "latest": "N",
-    "score": "NP",
 }
+
+# 새상품은 파는 곳이 한정돼 있어 후보를 많이 볼 필요가 없다. 같은 물건이 여러
+# 판매자에게 비슷한 값으로 올라와 있어 상위 몇 건이면 기준가가 잡힌다.
+#
+# 중고는 매물마다 상태와 가격이 제각각이라 넓게 봐야 하지만 새상품은 반대다.
+# 더 모아 봐야 같은 상품이 반복되고, 인기순 아래로 내려갈수록 액세서리가
+# 섞일 여지만 는다.
+DEFAULT_LIMIT = 4
 
 # 11번가 검색 필터에서 확인한 Apple 브랜드 코드다. 에어팟 검색에서
 # 케이스와 호환 액세서리를 제외하고 Apple 본품을 조회하는 데 사용한다.
@@ -127,15 +140,16 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--sort",
-        choices=("latest", "score"),
-        default="latest",
-        help="latest=최신순, score=11번가 랭킹순 (기본값: latest)",
+        choices=("popular", "latest"),
+        default="popular",
+        help="popular=인기(랭킹)순, latest=최신순 (기본값: popular)",
     )
     parser.add_argument(
         "--limit",
         type=int,
-        default=20,
-        help="수집할 정상 상품 수 (기본값: 20)",
+        default=DEFAULT_LIMIT,
+        help=f"수집할 정상 상품 수 (기본값: {DEFAULT_LIMIT}). "
+             "새상품은 기준가 확인용이라 중고보다 적게 모은다",
     )
     parser.add_argument(
         "--max-pages",
@@ -278,7 +292,36 @@ def extract_search_products(response: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def iter_search_products(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
+    """검색 결과를 순회한다.
+
+    브랜드 필터를 먼저 걸고, 결과가 모자라면 필터 없이 한 번 더 훑는다.
+
+    필터를 거는 이유는 "에어팟"을 검색했을 때 케이스·호환 액세서리가 아니라
+    Apple 본품을 보기 위해서다. 그런데 인기순과 함께 쓰면 11번가가 결과를
+    크게 줄인다. 실측하면 에어팟 프로 3 검색에서 브랜드 필터 + 인기순은 3건,
+    필터를 빼면 86건이 나온다(최신순은 45건 대 84건).
+
+    그래서 필터를 포기하지 않되, 목표를 못 채우면 필터 없이 보충한다.
+    보충분도 matches_query 를 통과해야 하므로 엉뚱한 상품이 섞이지는 않는다.
+    """
     seen_product_ids: set[str] = set()
+    brand_code = search_brand_code(args.query)
+
+    # 개수 제한은 crawl() 이 판단한다. 여기서 끊으면 상세 조회 단계의
+    # 추가 필터링(렌털·제목 불일치) 몫이 사라져 목표를 못 채운다.
+    #
+    # 제너레이터라 crawl() 이 충분히 모으면 두 번째 순회는 시작되지 않는다.
+    if brand_code:
+        yield from _search_pages(args, brand_code, seen_product_ids)
+        print("[보충 검색] 브랜드 필터 결과를 다 써서 필터 없이 더 찾습니다", flush=True)
+    yield from _search_pages(args, None, seen_product_ids)
+
+
+def _search_pages(
+    args: argparse.Namespace,
+    brand_code: str | None,
+    seen_product_ids: set[str],
+) -> Iterator[dict[str, Any]]:
     next_collection_index: int | None = None
     product_more_start_count: int | None = None
 
@@ -290,7 +333,6 @@ def iter_search_products(args: argparse.Namespace) -> Iterator[dict[str, Any]]:
             "searchMetaYN": "Y",
             "pageNo": page,
         }
-        brand_code = search_brand_code(args.query)
         if brand_code:
             params["brandCd"] = brand_code
         if page > 1 and next_collection_index is not None:

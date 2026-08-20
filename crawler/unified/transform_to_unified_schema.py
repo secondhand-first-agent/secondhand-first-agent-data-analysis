@@ -446,18 +446,43 @@ def normalize_condition_elevenst(detail):
 
 
 ELEVENST_FEE_RE = re.compile(r"([\d,]+)\s*원")
+# "제주지역 3,500원, 도서산간지역 6,500원" 형태에서 도서산간 금액만 읽는다.
+ELEVENST_REMOTE_RE = re.compile(r"도서산간[^\d]*([\d,]+)\s*원")
 
 
-def delivery_fee_elevenst(search):
+def elevenst_remote_fee(detail):
+    """상세 API의 도서산간 배송비 안내에서 추가 금액을 읽는다.
+
+    통합 스키마의 remote_fee는 "도서산간 추가 배송비" 하나이므로
+    제주 금액은 넣지 않는다. 원문은 raw에 남겨 확인할 수 있게 한다.
+    """
+    text = detail.get("extraDeliveryCostText")
+    if not isinstance(text, str):
+        return None
+
+    matched = ELEVENST_REMOTE_RE.search(text)
+    if not matched:
+        return None
+    return int(matched.group(1).replace(",", ""))
+
+
+def delivery_fee_elevenst(search, detail):
     """검색 결과의 deliveryDescription을 배송비로 해석한다.
 
     실측 값은 "무료" 또는 "2,500원" 형태다. 11번가는 통신판매 중개라
     편의점 픽업이 없고 배송 수단은 일반 택배 하나뿐이다.
     """
     raw = search.get("deliveryDescription")
+    remote_fee = elevenst_remote_fee(detail)
+    remote_text = detail.get("extraDeliveryCostText")
 
     if raw == "무료":
-        return delivery_free(raw)
+        result = delivery_free(raw)
+        # 무료배송이라도 도서산간은 추가금이 붙는다.
+        if remote_fee is not None:
+            result["options"][0]["remote_fee"] = remote_fee
+            result["raw"] = {"deliveryDescription": raw, "extraCost": remote_text}
+        return result
 
     if isinstance(raw, str):
         matched = ELEVENST_FEE_RE.search(raw)
@@ -468,11 +493,14 @@ def delivery_fee_elevenst(search):
                 "carrier": None,
                 "requires_pickup_point": False,
                 "fee": fee,
-                "remote_fee": None,
+                "remote_fee": remote_fee,
                 "raw_code": raw,
             }
             # 금액이 따로 표시되면 구매자가 낸다.
-            return delivery_result("BUYER", [option], raw)
+            return delivery_result(
+                "BUYER", [option],
+                {"deliveryDescription": raw, "extraCost": remote_text},
+            )
 
     # 해석하지 못한 값을 0원이나 무료로 채우지 않는다.
     return delivery_unavailable()
@@ -508,7 +536,7 @@ def transform_elevenst(raw_file, collected_at_fallback):
             "condition_raw": condition_raw_text(detail.get("productStatus")),
             # 오픈마켓이라 택배만 가능하다. 직거래 선택지가 없다.
             "trade_method": ["PARCEL"],
-            "delivery_fee": delivery_fee_elevenst(search),
+            "delivery_fee": delivery_fee_elevenst(search, detail),
             "location": location_elevenst(),
             "collected_at": raw_file.get("collectedAt", collected_at_fallback),
         })

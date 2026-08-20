@@ -30,6 +30,11 @@ from urllib.request import Request, urlopen
 
 SEARCH_API_URL = "https://apis.11st.co.kr/search/api/tab"
 DETAIL_URL = "https://www.11st.co.kr/products/{product_id}"
+# 상품 페이지가 JS로 불러오는 내부 API. 정적 HTML에 없는 값들이 여기 있다.
+# 대표 이미지 전체, 도서산간 배송비, 옵션별 가격을 준다.
+PDP_DETAIL_URL = (
+    "https://www.11st.co.kr/products/v1/pc/products/{product_id}/detail"
+)
 
 SORT_VALUES = {
     "latest": "N",
@@ -180,13 +185,14 @@ def get_response(
     url: str,
     params: dict[str, Any] | None = None,
     max_retries: int = 3,
+    headers: dict[str, str] | None = None,
 ) -> bytes:
     if params:
         url = f"{url}?{urlencode(params)}"
 
     for attempt in range(1, max_retries + 1):
         try:
-            request = Request(url, headers=HEADERS)
+            request = Request(url, headers=headers or HEADERS)
             with urlopen(request, timeout=20) as response:
                 return response.read()
         except (HTTPError, URLError, TimeoutError) as error:
@@ -405,6 +411,95 @@ def is_rental_detail(fields: dict[str, str]) -> bool:
     return fields.get("categoryPath", "").startswith(RENTAL_CATEGORY_PREFIX)
 
 
+def pdp_headers(product_id: str) -> dict[str, str]:
+    """상세 API는 해당 상품 페이지를 Referer로 요구한다."""
+    headers = dict(HEADERS)
+    headers["Origin"] = "https://www.11st.co.kr"
+    headers["Referer"] = DETAIL_URL.format(product_id=product_id)
+    return headers
+
+
+def get_pdp_json(url: str, product_id: str) -> dict[str, Any]:
+    """상세 API를 한 번만 호출한다.
+
+    보조 정보라 실패해도 수집을 멈추지 않는다. 재시도까지 하면
+    상품마다 지연이 쌓이므로 max_retries=1로 둔다.
+    """
+    raw = get_response(url, max_retries=1, headers=pdp_headers(product_id))
+    data = json.loads(raw.decode("utf-8"))
+    return data if isinstance(data, dict) else {}
+
+
+def option_price_range(
+    option_api_url: str,
+    product_id: str,
+) -> dict[str, Any] | None:
+    """옵션별 최종 가격의 범위를 구한다.
+
+    검색 결과의 finalPrc는 옵션 중 가장 싼 값이다. 실측 9건 모두
+    표시가와 옵션 최저가가 같았고 최고가는 최대 2배까지 벌어졌다.
+    품절 옵션은 살 수 없으므로 제외한다.
+    """
+    data = get_pdp_json(option_api_url, product_id)
+
+    prices = [
+        item["finalDiscountPrice"]
+        for variation in data.get("variations") or []
+        for item in variation.get("items") or []
+        if isinstance(item.get("finalDiscountPrice"), int)
+        and not item.get("soldOut")
+    ]
+    if not prices:
+        return None
+
+    return {"min": min(prices), "max": max(prices), "count": len(prices)}
+
+
+def extract_pdp_fields(product_id: str, delay: float) -> dict[str, Any]:
+    """상세 API에서 정적 HTML에 없는 값들을 모은다.
+
+    찾지 못한 값은 키를 넣지 않는다. 실패해도 빈 결과를 돌려주고
+    나머지 수집은 그대로 진행한다.
+    """
+    fields: dict[str, Any] = {}
+
+    try:
+        data = get_pdp_json(
+            PDP_DETAIL_URL.format(product_id=product_id), product_id
+        )
+    except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+        print(f"[상세 API 실패] {product_id}: {error}", file=sys.stderr)
+        return fields
+
+    images = (data.get("headerImage") or {}).get("images") or []
+    if images:
+        fields["images"] = [str(image) for image in images]
+
+    extra_cost = (
+        ((data.get("integDelivery") or {}).get("deliveryInfo") or {})
+        .get("extraCostText") or {}
+    ).get("pcDlvHtml")
+    if extra_cost:
+        fields["extraDeliveryCostText"] = clean_html_text(str(extra_cost))
+
+    price_info = data.get("price")
+    if isinstance(price_info, dict):
+        fields["priceInfo"] = price_info
+
+    option_api_url = (data.get("orderTray") or {}).get("optionApiUrl")
+    if option_api_url:
+        time.sleep(delay)
+        try:
+            option_prices = option_price_range(str(option_api_url), product_id)
+        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+            print(f"[옵션 조회 실패] {product_id}: {error}", file=sys.stderr)
+        else:
+            if option_prices:
+                fields["optionPrices"] = option_prices
+
+    return fields
+
+
 def extract_detail(page_html: str) -> dict[str, Any]:
     parser = JsonLdParser()
     parser.feed(page_html)
@@ -423,15 +518,20 @@ def extract_detail(page_html: str) -> dict[str, Any]:
     raise ValueError("상세 페이지에서 상품 구조화 데이터를 찾지 못했습니다.")
 
 
-def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
+def get_product_detail(
+    search_product: dict[str, Any],
+    delay: float = 0.0,
+) -> dict[str, Any]:
     product_id = str(search_product["id"])
     url = DETAIL_URL.format(product_id=product_id)
     page_html = get_text(url)
     product = extract_detail(page_html)
     page_fields = extract_page_fields(page_html)
+    pdp_fields = extract_pdp_fields(product_id, delay)
 
     offers = product.get("offers") or {}
-    images = product.get("image") or []
+    # JSON-LD는 대표 이미지 1장만 준다. 상세 API는 전체를 주므로 그쪽을 쓴다.
+    images = pdp_fields.get("images") or product.get("image") or []
     if isinstance(images, str):
         images = [images]
 
@@ -451,6 +551,7 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
             "detail": {
                 "jsonLdProduct": product,
                 **page_fields,
+                **pdp_fields,
             },
         },
     }
@@ -481,7 +582,7 @@ def crawl(args: argparse.Namespace) -> Path:
         print(f"[{len(products) + 1}/{args.limit}] {product_id} 상세 조회")
 
         try:
-            detail = get_product_detail(candidate)
+            detail = get_product_detail(candidate, args.delay)
             detail_title = str(detail["common"].get("title") or "")
             if not matches_query(detail_title, args.query):
                 print(f"[제외] 검색어와 다른 상품: {detail_title}")

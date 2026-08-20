@@ -182,12 +182,12 @@ DELIVERY_METHOD_MAP = {
     ("BUNJANG", "DEFAULT"):       ("STANDARD", None, False),
     ("BUNJANG", "GS_HALF_PRICE"): ("CONVENIENCE_STORE", "GS25", True),
     ("BUNJANG", "CU_THRIFTY"):    ("CONVENIENCE_STORE", "CU", True),
-    # 중고나라 deliveryType: 0=일반택배, 1·2=편의점 택배. 화면 문구로 확인함.
-    #   1은 CU가 언급된 글에서, 2는 GS가 언급된 글에서 관측됐으나 각 1건뿐이라
-    #   택배사는 단정하지 않는다. 픽업 방문이 필요하다는 점은 동일하다.
+    # 중고나라 deliveryType: 0=일반택배, 1=CU 반값택배, 2=GS 반값택배.
+    #   세 값이 함께 나온 글의 화면 표기와 금액이 정확히 대응해 확정했다.
+    #     일반택배 5,000원 / CU 반값택배 2,700원 / GS 반값택배 2,800원
     ("JOONGNA", 0):               ("STANDARD", None, False),
-    ("JOONGNA", 1):               ("CONVENIENCE_STORE", None, True),
-    ("JOONGNA", 2):               ("CONVENIENCE_STORE", None, True),
+    ("JOONGNA", 1):               ("CONVENIENCE_STORE", "CU", True),
+    ("JOONGNA", 2):               ("CONVENIENCE_STORE", "GS25", True),
     # N플리마켓 PICKUP_DELIVERY는 3,600원 정액이라 플랫폼 픽업 서비스로 판단.
     # 화면 라벨로 확정하지는 못했다.
     ("NAVER_FLEAMARKET", "DIRECT_DELIVERY"): ("STANDARD", None, False),

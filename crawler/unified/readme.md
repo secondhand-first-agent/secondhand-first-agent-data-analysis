@@ -136,6 +136,23 @@ python3 validate_unified_schema.py output/unified_*.json
 
 `items[]`의 각 필드는 [`docs/통합_스키마_정의.md`](../../docs/통합_스키마_정의.md)에 정리돼 있다.
 
+### 11번가에만 생기는 필드
+
+`price_range`는 **옵션에 따라 가격이 달라질 때만** 값이 있다.
+
+```jsonc
+{
+  "price": 26420,
+  "price_range": { "min": 26420, "max": 30950, "option_count": 4 }
+}
+```
+
+11번가 검색 결과의 가격은 옵션 중 가장 싼 값이다. 그대로 쓰면 새상품이 실제보다
+싸 보인다. 옵션이 있어도 전부 같은 가격이면 `null`이므로, **값이 있다는 것만으로
+"가격이 달라진다"를 뜻한다.** 중고 3사는 항상 `null`이다.
+
+`price`는 언제나 `price_range.min`과 같다. 검증기가 이 관계를 강제한다.
+
 ## 6. 검증 리포트 읽는 법
 
 ```text

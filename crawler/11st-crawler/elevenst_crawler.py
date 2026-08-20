@@ -30,6 +30,11 @@ from urllib.request import Request, urlopen
 
 SEARCH_API_URL = "https://apis.11st.co.kr/search/api/tab"
 DETAIL_URL = "https://www.11st.co.kr/products/{product_id}"
+# 상품 페이지가 JS로 불러오는 내부 API. 정적 HTML에 없는 값들이 여기 있다.
+# 대표 이미지 전체, 도서산간 배송비, 옵션별 가격을 준다.
+PDP_DETAIL_URL = (
+    "https://www.11st.co.kr/products/v1/pc/products/{product_id}/detail"
+)
 
 SORT_VALUES = {
     "latest": "N",
@@ -83,6 +88,23 @@ NON_PRODUCT_TERMS = (
     "대여",
 )
 
+# 11번가 검색 API는 상품 상태를 주지 않지만 상세 페이지에는 항상 들어 있다.
+# "상품상태" 행의 값은 "새상품" 또는 "중고상품"이다.
+PRODUCT_STATUS_RE = re.compile(
+    r"<th[^>]*>\s*상품상태\s*</th>\s*<td[^>]*>(.*?)</td>", re.S
+)
+# 중고·렌털 상품은 제목 앞에 뱃지가 붙는다. 일반 새상품에는 없다.
+CATEGORY_BADGE_RE = re.compile(r'<em class="category">(.*?)</em>', re.S)
+CATEGORY_PATH_RE = re.compile(r'<meta name="keyword" content="(.*?)"')
+TAG_RE = re.compile(r"<[^>]+>")
+
+# 렌털은 상품상태가 "새상품"으로 나오지만 소유권을 사는 거래가 아니다.
+# 총 지불액 비교에 섞이면 월 구독료가 판매가처럼 읽히므로 따로 걸러낸다.
+RENTAL_BADGE = "렌털"
+RENTAL_CATEGORY_PREFIX = "렌털/구독"
+RENTAL_UNIT_SUFFIX = "/월"
+
+
 TEXT_ALIASES = (
     (r"airpods", "에어팟"),
     (r"iphone", "아이폰"),
@@ -128,6 +150,11 @@ def parse_args() -> argparse.Namespace:
         help="요청 사이 대기 시간(초) (기본값: 1.0)",
     )
     parser.add_argument(
+        "--include-rental",
+        action="store_true",
+        help="렌털·구독 상품도 함께 수집한다 (기본값: 제외)",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         help="결과 JSON 경로. 생략하면 검색어를 이용해 자동 생성합니다.",
@@ -158,13 +185,14 @@ def get_response(
     url: str,
     params: dict[str, Any] | None = None,
     max_retries: int = 3,
+    headers: dict[str, str] | None = None,
 ) -> bytes:
     if params:
         url = f"{url}?{urlencode(params)}"
 
     for attempt in range(1, max_retries + 1):
         try:
-            request = Request(url, headers=HEADERS)
+            request = Request(url, headers=headers or HEADERS)
             with urlopen(request, timeout=20) as response:
                 return response.read()
         except (HTTPError, URLError, TimeoutError) as error:
@@ -339,6 +367,139 @@ class JsonLdParser(HTMLParser):
             self.in_json_ld = False
 
 
+def clean_html_text(value: str) -> str:
+    return html.unescape(TAG_RE.sub("", value)).strip()
+
+
+def extract_page_fields(page_html: str) -> dict[str, str]:
+    """상세 페이지에서 JSON-LD에 없는 값들을 읽는다.
+
+    찾지 못한 값은 키 자체를 넣지 않는다. 빈 문자열로 채우면
+    "수집했는데 값이 없음"과 "수집 못 함"을 구분할 수 없다.
+    """
+    fields: dict[str, str] = {}
+
+    status = PRODUCT_STATUS_RE.search(page_html)
+    if status:
+        fields["productStatus"] = clean_html_text(status.group(1))
+
+    badge = CATEGORY_BADGE_RE.search(page_html)
+    if badge:
+        fields["categoryBadge"] = clean_html_text(badge.group(1))
+
+    path = CATEGORY_PATH_RE.search(page_html)
+    if path:
+        fields["categoryPath"] = html.unescape(path.group(1)).strip()
+
+    return fields
+
+
+def is_rental_search_product(search_product: dict[str, Any]) -> bool:
+    """검색 결과만으로 렌털을 판별한다.
+
+    렌털은 가격 단위가 "원/월", "원~/월"이다. 상세 조회 전에 걸러
+    불필요한 요청을 줄인다.
+    """
+    unit = search_product.get("unitTxt")
+    return isinstance(unit, str) and unit.endswith(RENTAL_UNIT_SUFFIX)
+
+
+def is_rental_detail(fields: dict[str, str]) -> bool:
+    """상세 페이지 값으로 렌털을 판별한다. 검색 단계에서 놓친 것을 잡는다."""
+    if fields.get("categoryBadge") == RENTAL_BADGE:
+        return True
+    return fields.get("categoryPath", "").startswith(RENTAL_CATEGORY_PREFIX)
+
+
+def pdp_headers(product_id: str) -> dict[str, str]:
+    """상세 API는 해당 상품 페이지를 Referer로 요구한다."""
+    headers = dict(HEADERS)
+    headers["Origin"] = "https://www.11st.co.kr"
+    headers["Referer"] = DETAIL_URL.format(product_id=product_id)
+    return headers
+
+
+def get_pdp_json(url: str, product_id: str) -> dict[str, Any]:
+    """상세 API를 한 번만 호출한다.
+
+    보조 정보라 실패해도 수집을 멈추지 않는다. 재시도까지 하면
+    상품마다 지연이 쌓이므로 max_retries=1로 둔다.
+    """
+    raw = get_response(url, max_retries=1, headers=pdp_headers(product_id))
+    data = json.loads(raw.decode("utf-8"))
+    return data if isinstance(data, dict) else {}
+
+
+def option_price_range(
+    option_api_url: str,
+    product_id: str,
+) -> dict[str, Any] | None:
+    """옵션별 최종 가격의 범위를 구한다.
+
+    검색 결과의 finalPrc는 옵션 중 가장 싼 값이다. 실측 9건 모두
+    표시가와 옵션 최저가가 같았고 최고가는 최대 2배까지 벌어졌다.
+    품절 옵션은 살 수 없으므로 제외한다.
+    """
+    data = get_pdp_json(option_api_url, product_id)
+
+    prices = [
+        item["finalDiscountPrice"]
+        for variation in data.get("variations") or []
+        for item in variation.get("items") or []
+        if isinstance(item.get("finalDiscountPrice"), int)
+        and not item.get("soldOut")
+    ]
+    if not prices:
+        return None
+
+    return {"min": min(prices), "max": max(prices), "count": len(prices)}
+
+
+def extract_pdp_fields(product_id: str, delay: float) -> dict[str, Any]:
+    """상세 API에서 정적 HTML에 없는 값들을 모은다.
+
+    찾지 못한 값은 키를 넣지 않는다. 실패해도 빈 결과를 돌려주고
+    나머지 수집은 그대로 진행한다.
+    """
+    fields: dict[str, Any] = {}
+
+    try:
+        data = get_pdp_json(
+            PDP_DETAIL_URL.format(product_id=product_id), product_id
+        )
+    except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+        print(f"[상세 API 실패] {product_id}: {error}", file=sys.stderr)
+        return fields
+
+    images = (data.get("headerImage") or {}).get("images") or []
+    if images:
+        fields["images"] = [str(image) for image in images]
+
+    extra_cost = (
+        ((data.get("integDelivery") or {}).get("deliveryInfo") or {})
+        .get("extraCostText") or {}
+    ).get("pcDlvHtml")
+    if extra_cost:
+        fields["extraDeliveryCostText"] = clean_html_text(str(extra_cost))
+
+    price_info = data.get("price")
+    if isinstance(price_info, dict):
+        fields["priceInfo"] = price_info
+
+    option_api_url = (data.get("orderTray") or {}).get("optionApiUrl")
+    if option_api_url:
+        time.sleep(delay)
+        try:
+            option_prices = option_price_range(str(option_api_url), product_id)
+        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+            print(f"[옵션 조회 실패] {product_id}: {error}", file=sys.stderr)
+        else:
+            if option_prices:
+                fields["optionPrices"] = option_prices
+
+    return fields
+
+
 def extract_detail(page_html: str) -> dict[str, Any]:
     parser = JsonLdParser()
     parser.feed(page_html)
@@ -357,13 +518,20 @@ def extract_detail(page_html: str) -> dict[str, Any]:
     raise ValueError("상세 페이지에서 상품 구조화 데이터를 찾지 못했습니다.")
 
 
-def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
+def get_product_detail(
+    search_product: dict[str, Any],
+    delay: float = 0.0,
+) -> dict[str, Any]:
     product_id = str(search_product["id"])
     url = DETAIL_URL.format(product_id=product_id)
-    product = extract_detail(get_text(url))
+    page_html = get_text(url)
+    product = extract_detail(page_html)
+    page_fields = extract_page_fields(page_html)
+    pdp_fields = extract_pdp_fields(product_id, delay)
 
     offers = product.get("offers") or {}
-    images = product.get("image") or []
+    # JSON-LD는 대표 이미지 1장만 준다. 상세 API는 전체를 주므로 그쪽을 쓴다.
+    images = pdp_fields.get("images") or product.get("image") or []
     if isinstance(images, str):
         images = [images]
 
@@ -382,6 +550,8 @@ def get_product_detail(search_product: dict[str, Any]) -> dict[str, Any]:
             "search": search_product,
             "detail": {
                 "jsonLdProduct": product,
+                **page_fields,
+                **pdp_fields,
             },
         },
     }
@@ -398,16 +568,34 @@ def crawl(args: argparse.Namespace) -> Path:
     products: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
 
+    rental_skipped = 0
+
     for candidate in iter_search_products(args):
         product_id = str(candidate["id"])
+
+        # 1단계 — 검색 결과의 가격 단위로 거른다. 상세 요청을 아낀다.
+        if not args.include_rental and is_rental_search_product(candidate):
+            rental_skipped += 1
+            print(f"[제외] 렌털 상품: {product_id} {candidate.get('title', '')[:40]}")
+            continue
+
         print(f"[{len(products) + 1}/{args.limit}] {product_id} 상세 조회")
 
         try:
-            detail = get_product_detail(candidate)
+            detail = get_product_detail(candidate, args.delay)
             detail_title = str(detail["common"].get("title") or "")
             if not matches_query(detail_title, args.query):
                 print(f"[제외] 검색어와 다른 상품: {detail_title}")
                 continue
+
+            # 2단계 — 상세 페이지 뱃지·카테고리로 한 번 더 거른다.
+            if not args.include_rental and is_rental_detail(
+                detail["elevenst"]["detail"]
+            ):
+                rental_skipped += 1
+                print(f"[제외] 렌털 상품(상세 확인): {detail_title[:40]}")
+                continue
+
             products.append(detail)
         except Exception as error:  # 한 상품 실패로 전체 수집을 중단하지 않는다.
             print(f"[상세 조회 실패] {product_id}: {error}", file=sys.stderr)
@@ -428,6 +616,7 @@ def crawl(args: argparse.Namespace) -> Path:
         "collectedAt": datetime.now(timezone.utc).isoformat(),
         "count": len(products),
         "failedCount": len(errors),
+        "rentalSkippedCount": rental_skipped,
         "products": products,
         "errors": errors,
     }
@@ -437,6 +626,8 @@ def crawl(args: argparse.Namespace) -> Path:
         json.dump(result, file, ensure_ascii=False, indent=2)
 
     print(f"[완료] {len(products)}개 수집")
+    if rental_skipped:
+        print(f"[렌털 제외] {rental_skipped}개")
     print(f"[저장 위치] {output_path.resolve()}")
 
     if len(products) < args.limit:

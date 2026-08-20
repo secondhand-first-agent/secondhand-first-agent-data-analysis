@@ -31,6 +31,8 @@ CRAWLERS = (
     ("joongna", CRAWLER_DIR / "joongna-crawler" / "joongna_crawler.py"),
     ("naver_fleamarket",
      CRAWLER_DIR / "naver-fleamarket-crawler" / "naver_fleamarket_crawler.py"),
+    # 새상품 비교 기준. 중고만 모으면 "새것을 살 필요가 있는가"를 판단할 수 없다.
+    ("elevenst", CRAWLER_DIR / "11st-crawler" / "elevenst_crawler.py"),
 )
 
 TRANSFORM = UNIFIED_DIR / "transform_to_unified_schema.py"
@@ -144,6 +146,7 @@ def main() -> None:
             "--bunjang", str(raw_paths["bunjang"]),
             "--joongna", str(raw_paths["joongna"]),
             "--naver-fleamarket", str(raw_paths["naver_fleamarket"]),
+            "--elevenst", str(raw_paths["elevenst"]),
             "--output", str(unified_path),
         ]
         print("\n[변환]", flush=True)

@@ -1,7 +1,7 @@
 # 통합 크롤러
 
-번개장터 / 중고나라 / N플리마켓 세 플랫폼을 한 번에 크롤링하고
-통합 스키마로 합친다.
+번개장터 / 중고나라 / N플리마켓 / 11번가 네 플랫폼을 한 번에 크롤링하고
+통합 스키마로 합친다. 앞의 셋은 중고, 11번가는 새상품 비교 기준이다.
 
 스키마 정의는 [`docs/통합_스키마_정의.md`](../../docs/통합_스키마_정의.md)를 참고한다.
 
@@ -23,7 +23,7 @@ Python 3.10 이상이 필요하며 외부 패키지는 사용하지 않는다.
 ```bash
 cd crawler/unified
 
-# 상품 하나를 세 플랫폼에서 수집해 통합
+# 상품 하나를 네 플랫폼에서 수집해 통합
 python3 run_unified_crawl.py "닌텐도 스위치 OLED"
 
 # 플랫폼당 10건씩 모으고 검증까지
@@ -34,7 +34,7 @@ python3 run_unified_crawl.py "냉장고" --limit 10 --validate
 
 ## 3. `run_unified_crawl.py`
 
-세 크롤러를 차례로 실행하고 변환까지 이어서 돌린다.
+네 크롤러를 차례로 실행하고 변환까지 이어서 돌린다.
 
 | 인자 | 기본값 | 설명 |
 | --- | --- | --- |
@@ -46,6 +46,9 @@ python3 run_unified_crawl.py "냉장고" --limit 10 --validate
 | `--keep-raw` | 끄기 | 플랫폼별 원본 JSON도 남긴다 |
 | `--validate` | 끄기 | 변환 후 검증 스크립트까지 실행한다 |
 
+`transform_to_unified_schema.py`의 `--elevenst`는 선택 인자다. 생략하면
+중고 세 플랫폼만 변환한다.
+
 ### 원본 JSON도 남기기
 
 기본적으로 플랫폼별 원본은 임시 폴더에 만들고 끝나면 지운다.
@@ -56,6 +59,7 @@ python3 run_unified_crawl.py "샤넬 가방" --keep-raw
 # output/bunjang_샤넬_가방.json
 # output/joongna_샤넬_가방.json
 # output/naver_fleamarket_샤넬_가방.json
+# output/elevenst_샤넬_가방.json
 # output/unified_샤넬_가방.json
 ```
 
@@ -70,12 +74,26 @@ python3 run_unified_crawl.py "샤넬 가방" --keep-raw
   bunjang             3건
   joongna             3건
   naver_fleamarket    0건
+  elevenst            3건
 ```
 
 ### 요청 빈도
 
 `--delay` 기본값 1초를 유지한다. 세 플랫폼 모두 공개 웹의 내부 데이터
 경로를 사용하므로 짧은 시간에 반복 실행하지 않는다.
+
+### 11번가 렌털은 자동으로 빠진다
+
+11번가에는 렌털·구독 상품이 섞여 있고 상품상태가 `새상품`으로 나온다.
+월 구독료가 판매가로 읽히면 총 지불액 비교가 깨지므로 기본적으로 제외한다.
+
+```text
+[제외] 렌털 상품: 9561407554 [구독/렌탈] (72개월약정) LG 베스트 정수기 가전구독…
+[완료] 3개 수집
+[렌털 제외] 1개
+```
+
+렌털까지 보려면 11번가 크롤러를 따로 실행하고 `--include-rental`을 붙인다.
 
 ## 4. 개별 스크립트
 
@@ -88,6 +106,7 @@ python3 transform_to_unified_schema.py \
   --bunjang output/bunjang_냉장고.json \
   --joongna output/joongna_냉장고.json \
   --naver-fleamarket output/naver_fleamarket_냉장고.json \
+  --elevenst output/elevenst_냉장고.json \
   --output output/unified_냉장고.json
 ```
 
@@ -109,7 +128,7 @@ python3 validate_unified_schema.py output/unified_*.json
 {
   "query": "닌텐도 스위치 OLED",
   "generatedAt": "2026-08-19T...",
-  "sourceCounts": { "BUNJANG": 3, "JOONGNA": 3, "NAVER_FLEAMARKET": 3 },
+  "sourceCounts": { "BUNJANG": 3, "JOONGNA": 3, "NAVER_FLEAMARKET": 3, "ELEVENST": 3 },
   "count": 9,
   "items": [ /* 통합 스키마 항목 */ ]
 }
@@ -135,8 +154,11 @@ python3 validate_unified_schema.py output/unified_*.json
 
 - **`편의점 픽업만 가능`** — 편의점 외 배송 수단이 없는 상품 수.
   픽업이 어려운 사용자에게는 사실상 구매 불가다. 경고로도 잡힌다.
-- **`location.precision`** — `DONG_ONLY`나 `NONE`이 많으면 거리 점수를
-  그대로 쓰면 안 된다. 플랫폼 간 형평성이 깨진다.
+- **`location.precision`** — `DONG_ONLY`가 많으면 거리 점수를 그대로 쓰면 안 된다.
+  플랫폼 간 형평성이 깨진다. `NONE`은 다르다. 택배 전용 상품이라 위치가
+  애초에 없는 것이므로 정상이다. 11번가는 새상품이라 항상 `NONE`이다.
+  거리 계산은 `precision`으로 분기한다. 자세한 계약은
+  [스키마 정의의 거리 계산 연동](../../docs/통합_스키마_정의.md)을 참고한다.
 
 ## 7. 문제가 생기면
 
@@ -144,6 +166,8 @@ python3 validate_unified_schema.py output/unified_*.json
 | --- | --- |
 | 특정 플랫폼만 0건 | 검색어를 바꿔 본다. 플랫폼에 해당 카테고리가 없을 수 있다 |
 | `condition_level`이 전부 `UNKNOWN` | 크롤러가 상태 필드를 수집하는 버전인지 확인한다 |
+| 11번가에 렌털이 섞임 | `unitTxt`·상세 뱃지 판별을 통과한 것이다. 원본을 `--keep-raw`로 확인한다 |
 | `delivery_fee.min_fee` 불일치 오류 | `options`와 대표 금액 계산이 어긋난 것이다. 변환 로직 버그다 |
 | `location.precision`이 `DONG_ONLY` | N플리마켓 주소 조회가 실패했다. 네이버 지도 경로 변경 가능성 |
+| 11번가만 `location.precision`이 전부 `NONE` | 정상이다. 새상품은 택배만 가능해 거래 지역이 없다 |
 | 검증에서 `UNKNOWN` 배송 수단 | 새로운 원본 코드가 나온 것이다. 매핑 테이블에 추가가 필요하다 |

@@ -436,6 +436,26 @@ def location_naver_fleamarket(sale_product):
 # ---------------------------------------------------------------------
 # 플랫폼별 변환기
 # ---------------------------------------------------------------------
+def price_range_elevenst(detail):
+    """옵션에 따라 가격이 달라지는 상품의 범위를 만든다.
+
+    11번가 검색 결과의 가격은 옵션 중 가장 싼 값이다. 실측에서 표시가와
+    옵션 최저가는 항상 같았고 최고가는 최대 2배까지 벌어졌다.
+
+    옵션이 있어도 전부 같은 값이면 가격이 변하지 않으므로 None을 준다.
+    그래야 이 필드가 있다는 것만으로 "가격이 달라진다"를 뜻하게 된다.
+    """
+    option_prices = detail.get("optionPrices")
+    if not isinstance(option_prices, dict):
+        return None
+
+    low, high = option_prices.get("min"), option_prices.get("max")
+    if not isinstance(low, int) or not isinstance(high, int) or high <= low:
+        return None
+
+    return {"min": low, "max": high, "option_count": option_prices.get("count")}
+
+
 def normalize_condition_elevenst(detail):
     """11번가 상세 페이지의 "상품상태" 행을 통합 상태값으로 바꾼다.
 
@@ -529,6 +549,7 @@ def transform_elevenst(raw_file, collected_at_fallback):
             "url": item.get("url"),
             "title": common.get("title"),
             "price": common.get("price"),
+            "price_range": price_range_elevenst(detail),
             "currency": common.get("currency"),
             "description": common.get("description"),
             "images": common.get("images", []),
@@ -555,6 +576,8 @@ def transform_bunjang(raw_file, collected_at_fallback):
             "url": item.get("url"),
             "title": common.get("title"),
             "price": common.get("price"),
+            # 중고 3사는 게시글마다 가격이 하나로 확정된다.
+            "price_range": None,
             "currency": common.get("currency"),
             "description": common.get("description"),
             "images": common.get("images", []),
@@ -582,6 +605,8 @@ def transform_joongna(raw_file, collected_at_fallback):
             "url": item.get("url"),
             "title": common.get("title"),
             "price": common.get("price"),
+            # 중고 3사는 게시글마다 가격이 하나로 확정된다.
+            "price_range": None,
             "currency": common.get("currency"),
             "description": common.get("description"),
             "images": common.get("images", []),
@@ -608,6 +633,8 @@ def transform_naver_fleamarket(raw_file, collected_at_fallback):
             "url": item.get("url"),
             "title": common.get("title"),
             "price": common.get("price"),
+            # 중고 3사는 게시글마다 가격이 하나로 확정된다.
+            "price_range": None,
             "currency": common.get("currency"),
             "description": common.get("description"),
             "images": common.get("images", []),

@@ -67,6 +67,29 @@ def validate_item(item, errors, warnings):
     if isinstance(price, (int, float)) and price < 0:
         errors.append(f"[{item_id}] price: 음수 값 {price}")
 
+    # price_range — 옵션에 따라 가격이 달라지는 상품만 값이 있다
+    pr = item.get("price_range")
+    if pr is not None:
+        if not isinstance(pr, dict):
+            errors.append(f"[{item_id}] price_range: 객체가 아님")
+        else:
+            low, high = pr.get("min"), pr.get("max")
+            if not isinstance(low, int) or not isinstance(high, int):
+                errors.append(f"[{item_id}] price_range: min/max가 정수가 아님")
+            else:
+                if high <= low:
+                    errors.append(
+                        f"[{item_id}] price_range: max가 min보다 크지 않음 "
+                        f"({low} ~ {high}). 가격이 변하지 않으면 null이어야 한다"
+                    )
+                # 표시가는 옵션 최저가와 같아야 한다. 어긋나면 어느 쪽이
+                # 진짜 하한인지 알 수 없어 총 지불액 비교가 무너진다.
+                if isinstance(price, int) and price != low:
+                    errors.append(
+                        f"[{item_id}] price_range: price({price})와 "
+                        f"min({low})이 다름"
+                    )
+
     # currency
     if item.get("currency") not in (None, "KRW"):
         warnings.append(f"[{item_id}] currency: KRW가 아님 -> {item.get('currency')}")
@@ -213,6 +236,15 @@ def summarize(items):
     for platform, group in by_platform.items():
         print(f"\n[{platform}] {len(group)}건")
         print("  condition_level:", dict(Counter(i.get("condition_level") for i in group)))
+        ranged = [i for i in group if isinstance(i.get("price_range"), dict)]
+        if ranged:
+            spreads = [
+                i["price_range"]["max"] - i["price_range"]["min"] for i in ranged
+            ]
+            print(
+                f"  옵션따라 가격변동: {len(ranged)}/{len(group)}건 "
+                f"(최대 편차 {max(spreads):,}원)"
+            )
         trade_flat = Counter(
             tuple(sorted(i.get("trade_method") or [])) for i in group
         )

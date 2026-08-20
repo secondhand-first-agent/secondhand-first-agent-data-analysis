@@ -138,8 +138,30 @@ python3 joongna_crawler.py "닌텐도 스위치 OLED" \
 - `joongna.search`: 검색 페이지에 포함된 중고나라 상품 객체
 - `joongna.detail.jsonLdProduct`: 상세 페이지의 `Product` JSON-LD 객체
 - `joongna.detail.jsonLdBreadcrumb`: 상세 페이지의 `BreadcrumbList.itemListElement`
+- `joongna.detail.condition`: 상세 페이지 내부 데이터의 `condition` 객체
+- `joongna.detail.tradeType`: 상세 페이지 내부 데이터의 `tradeType` 객체
+- `joongna.detail.deliveryInfos`: 상세 페이지 내부 데이터의 `deliveryInfos` 배열
 
 `parcelFee`를 `freeShipping`으로, `pickupBadgeFlag`를 `inPersonTrade`로 변환하지 않는다. JSON-LD의 `itemCondition`도 별도 상태 코드로 재해석하지 않고 중고나라 상세 데이터 그대로 저장한다.
+
+### JSON-LD로 알 수 없는 필드
+
+JSON-LD의 `offers.itemCondition`은 미개봉 상품까지 포함해 표본 22건 전부 `UsedCondition`으로 고정되어 있어 실제 상태를 반영하지 못한다. 거래방식과 실제 배송비도 JSON-LD에 없다.
+
+이 세 값은 상세 페이지에 함께 실려 있는 중고나라 내부 데이터에서 원본 형태 그대로 읽어 저장한다. 원본에서 읽지 못하면 키를 만들지 않는다.
+
+```json
+{
+  "condition": {
+    "productCondition": 0,
+    "options": { "fullPackageYn": 0, "limitedEditionYn": 0, "flawedYn": 0 }
+  },
+  "tradeType": { "isPost": true, "isMeet": false, "isPickup": false },
+  "deliveryInfos": [{ "deliveryType": 0, "deliveryPrice": 4000 }]
+}
+```
+
+값의 의미는 해석하지 않고 그대로 둔다. 해석은 통합 스키마 변환 단계에서 한다.
 
 ## 6. 최상위 결과 구조
 
